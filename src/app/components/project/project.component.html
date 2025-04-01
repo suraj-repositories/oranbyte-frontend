@@ -5,7 +5,7 @@
   <div class="container section-title" data-aos="fade-up">
     <span>Projects</span>
     <h2>Projects</h2>
-    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    <p>Explore my innovative projects - where creativity and function come together to create effective solutions!</p>
   </div><!-- End Section Title -->
 
   <div class="container">
@@ -23,7 +23,7 @@
 
       <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-        @for (project of projects.slice(0, 9); track project.id) {
+        @for (project of projects; track project.id) {
         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
           <img src="{{ project.image }}" class="img-fluid" alt="">
           <div class="portfolio-info">
@@ -31,18 +31,14 @@
             <p>{{ project.description }}</p>
             <a href="/assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app"
               class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-            <a href="portfolio-details.html" title="More Details" class="details-link"><i
+            <a [routerLink]="['/project', project.id]" title="More Details" class="details-link"><i
                 class="bi bi-link-45deg"></i></a>
           </div>
         </div><!-- End Portfolio Item -->
       }@empty {
-          <li>
-           <div class="d-flex w-100 justify-content-center">
-            <div class="spinner-border text-warning" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-           </div>
-          </li>
+
+         <app-loading></app-loading>
+
         }
 
       </div><!-- End Portfolio Container -->

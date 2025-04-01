@@ -1,7 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { environment } from 'src/environments/environment';
-
+import { LoadingComponent } from "../loading/loading.component";
+import { Router } from '@angular/router';
 
 interface ApiResponse {
   status: string;
@@ -18,7 +20,7 @@ function isApiResponse(obj: any): obj is ApiResponse {
 
 @Component({
   selector: 'app-project',
-  imports: [],
+  imports: [RouterLink, LoadingComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css'
 })
@@ -28,11 +30,12 @@ export class ProjectComponent {
   constructor(
     private projectService: ProjectService,
     private cdRef: ChangeDetectorRef,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.loadProjects();
-    console.log(this.projects);
+
   }
 
   loadProjects(){
@@ -40,7 +43,13 @@ export class ProjectComponent {
       next: (response) => {
         console.log('shubh', response);
         if (isApiResponse(response)) {
-          this.projects = response.data;
+
+          if(this.router.url == '/projects'){
+            this.projects = response.data;
+          }else{
+            this.projects = response.data.slice(0, 9);
+          }
+
           this.cdRef.detectChanges();
         } else {
           console.error('Received unexpected response format:', response);

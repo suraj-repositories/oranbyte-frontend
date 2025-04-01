@@ -6,10 +6,12 @@ import { ProjectDescriptionComponent } from './components/project/project-descri
 import { AboutComponent } from './components/pages/about/about.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
+import { ProjectComponent } from './components/project/project.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'projects', component: ProjectComponent },
   { path: 'project/:id', component: ProjectDescriptionComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },

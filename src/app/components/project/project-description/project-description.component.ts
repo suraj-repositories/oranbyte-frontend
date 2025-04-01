@@ -1,14 +1,20 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { of, switchMap, Subscription } from 'rxjs';
+import { of, switchMap, Subscription, catchError } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { marked } from 'marked'; // Import marked.js for Markdown parsing
+import { marked } from 'marked';
+import { CommonModule } from '@angular/common';
+import { LoadingComponent } from '../../loading/loading.component';
+
+interface ProjectReadmeResponse {
+  data?: string;
+}
 
 @Component({
   selector: 'app-project-description',
-  standalone: true, // Mark as standalone since you have 'imports: []'
-  imports: [], // You'll likely want to import CommonModule if you use *ngIf, etc.
+  standalone: true,
+  imports: [CommonModule, LoadingComponent],
   templateUrl: './project-description.component.html',
   styleUrl: './project-description.component.css'
 })
@@ -18,35 +24,13 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
   readmeContent: string | null = null;
   safeReadmeHtml: SafeHtml | null = null;
   private routeSubscription: Subscription | undefined;
-  private sanitizer = inject(DomSanitizer); // Inject DomSanitizer
-  private projectService = inject(ProjectService); // Inject ProjectService
-  private route = inject(ActivatedRoute); // Inject ActivatedRoute
+  private sanitizer = inject(DomSanitizer);
+  private projectService = inject(ProjectService);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.routeSubscription = this.route.paramMap.pipe(
-      switchMap(params => {
-        this.projectId = Number(params.get('id'));
-        if (this.projectId) {
-          return this.projectService.getProjectReadmeById(this.projectId);
-        }
-        return of(null); // Return null when projectId is not available
-      })
-    ).subscribe(
-      (response: any) => { // Adjust 'any' to your expected response type
-        if (response && response.data) {
-          this.readmeContent = response.data;
-          this.safeReadmeHtml = this.sanitizeMarkdown(this.readmeContent);
-        } else {
-          this.readmeContent = 'Error loading README.';
-          this.safeReadmeHtml = this.sanitizer.bypassSecurityTrustHtml(this.readmeContent);
-        }
-      },
-      (error) => {
-        console.error('Error fetching README:', error);
-        this.readmeContent = 'Error loading README.';
-        this.safeReadmeHtml = this.sanitizer.bypassSecurityTrustHtml(this.readmeContent);
-      }
-    );
+    this.loadReadme();
+
   }
 
   ngOnDestroy(): void {
@@ -55,12 +39,49 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  loadReadme(){
+    this.routeSubscription = this.route.paramMap.pipe(
+      switchMap(params => {
+        this.projectId = Number(params.get('id'));
+        if (this.projectId) {
+          return this.projectService.getProjectReadmeById(this.projectId).pipe(
+            catchError(error => {
+              return of({ data: null });
+            })
+          );
+        }
+        return of({ data: null });
+      })
+    ).subscribe({
+      next: (response: ProjectReadmeResponse) => {
+        if (response && response.data) {
+          this.readmeContent = response.data;
+          this.sanitizeMarkdown(this.readmeContent).then((safeHtml) => {
+            this.safeReadmeHtml = (safeHtml as any).changingThisBreaksApplicationSecurity;
+          });
+        } else {
+          this.handleReadmeLoadError();
+        }
+      },
+      error: (error) => {
+        this.handleReadmeLoadError();
+      }
+    });
+  }
+
   async sanitizeMarkdown(markdown: string | null): Promise<SafeHtml | null> {
     if (!markdown) {
       return null;
     }
-    // Use marked.js for more robust Markdown parsing
     const htmlContent = await marked.parse(markdown);
-    return this.sanitizer.bypassSecurityTrustHtml(htmlContent);
+    const sanitize = this.sanitizer.bypassSecurityTrustHtml(htmlContent)
+    console.log();
+    return sanitize;
+  }
+
+  private handleReadmeLoadError(): void {
+    this.readmeContent = 'Error loading README.';
+    this.safeReadmeHtml = this.sanitizer.bypassSecurityTrustHtml(this.readmeContent);
   }
 }

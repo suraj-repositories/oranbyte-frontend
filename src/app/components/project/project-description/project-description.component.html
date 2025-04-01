@@ -2,19 +2,23 @@
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
-    <!-- <span>About Us<br></span> -->
-    <h2>Poly book Lib</h2>
+    <span class="no-select">School Management system<br></span>
+    <h2>School Management System</h2>
     <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
   </div><!-- End Section Title -->
 
   <div class="container">
 
-    <div class="row gy-4">
+    <div class="row g-4 ">
       <div class="col-lg-9 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-        <div >
-          <div *ngIf="safeReadmeHtml" [innerHTML]="safeReadmeHtml"></div>
-          <div *ngIf="!safeReadmeHtml && readmeContent">{{ readmeContent }}</div>
-          <div *ngIf="!safeReadmeHtml && !readmeContent">Loading README...</div>
+        <div class="readme-container">
+          @if(safeReadmeHtml) {
+            <div class="readme" [innerHTML]="safeReadmeHtml"></div>
+          } @else if (readmeContent) {
+            <div class="readme">{{ readmeContent }}</div>
+          } @else {
+            <app-loading></app-loading>
+          }
         </div>
       </div>
       <div class="col-lg-3 content" data-aos="fade-up" data-aos-delay="200">

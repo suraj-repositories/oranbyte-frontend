@@ -747,6 +747,10 @@ a{
   bottom: 15px;
 }
 
+.no-select{
+  user-select: none !important;
+}
+
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
@@ -1750,4 +1754,7 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+.section-title span{
+  user-select: none !important;
 }
