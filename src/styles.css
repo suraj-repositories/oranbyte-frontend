@@ -4,7 +4,8 @@
 
 
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  --default-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   --heading-font: "Raleway",  sans-serif;
   --nav-font: "Ubuntu",  sans-serif;
 }
@@ -14,6 +15,8 @@
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #5f687b; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #fca503; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-dark: #ff6a00e9; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-light: #fcae1e; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -62,6 +65,7 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
 
 a {
@@ -1838,6 +1842,190 @@ section,
 /* Optional fallback */
 .bg-default    { background-color: #ccc !important;}
 
+/* BEGIN : languages (text colors) */
+.text-javascript { color: #f0db4f !important; }
+.text-python     { color: #3572A5 !important; }
+.text-java       { color: #b07219 !important; }
+.text-typescript { color: #007ACC !important; }
+.text-csharp     { color: #178600 !important; }
+.text-cpp        { color: #00599C !important; }
+.text-c          { color: #555555 !important; }
+.text-php        { color: #8892BE !important; }
+.text-ruby       { color: #701516 !important; }
+.text-go         { color: #00ADD8 !important; }
+.text-swift      { color: #FA7343 !important; }
+.text-kotlin     { color: #A97BFF !important; }
+.text-rust       { color: #DEA584 !important; }
+.text-html       { color: #e34c26 !important; }
+.text-css        { color: #264de4 !important; }
+.text-dart       { color: #0175C2 !important; }
+.text-scala      { color: #DC322F !important; }
+.text-shell      { color: #89e051 !important; }
+.text-sql        { color: #e38c00 !important; }
+.text-asm        { color: #6E4C13 !important; }
+.text-vue        { color: #41B883 !important; }
+.text-react      { color: #61DAFB !important; }
+.text-angular    { color: #DD0031 !important; }
+.text-sass       { color: #CD6799 !important; }
+.text-less       { color: #1D365D !important; }
+.text-perl       { color: #0298c3 !important; }
+.text-haskell    { color: #5e5086 !important; }
+.text-elixir     { color: #6e4a7e !important; }
+.text-erlang     { color: #B83998 !important; }
+.text-r          { color: #198CE7 !important; }
+.text-julia      { color: #9558B2 !important; }
+.text-lua        { color: #000080 !important; }
+.text-objc       { color: #438EFF !important; }
+.text-coffeescript { color: #244776 !important; }
+.text-fortran    { color: #734F96 !important; }
+.text-fsharp     { color: #b845fc !important; }
+.text-powershell { color: #012456 !important; }
+.text-bash       { color: #4EAA25 !important; }
+.text-zsh        { color: #89e051 !important; }
+.text-fish       { color: #c1f12e !important; }
+.text-hack       { color: #454545 !important; }
+.text-yaml       { color: #cb171e !important; }
+.text-markdown   { color: #083fa1 !important; }
+.text-ejs        { color: #F1E05A !important; }
+.text-handlebars { color: #f0772b !important; }
+.text-mustache   { color: #724b00 !important; }
+.text-pug        { color: #a86454 !important; }
+.text-nunjucks   { color: #3d8137 !important; }
+.text-liquid     { color: #67b8de !important; }
+.text-twig       { color: #8B9E4D !important; }
+.text-blade      { color: #f05340 !important; }
+.text-smarty     { color: #f1ae1b !important; }
+.text-erb        { color: #701516 !important; }
+
+/* Optional fallback */
+.text-default    { color: #ccc !important; }
 
 
 /* END : languages */
+
+
+/* BEGIN - README */
+.readme{
+  font-family: var(--default-font);
+}
+.readme img{
+  user-select: none !important;
+  margin: 2px 0;
+}
+
+.readme h1{
+  font-size: 1.7em !important;
+  margin: 0.5em 0;
+  font-weight: 600;
+}
+.readme h2{
+  font-size: 1.5em !important;
+  margin: 0.5em 0;
+  font-weight: 600;
+}
+.readme h3{
+  font-size: 1.3em !important;
+  margin: 0.5em 0;
+  font-weight: 600;
+}
+
+.readme ol li::marker {
+  font-weight: bold;
+}
+.readme table {
+  border-collapse: collapse;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-family: var(--default-font);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1f2328;
+  border: 1px solid #d0d7de;
+  width: auto;
+  max-width: 100%;
+}
+
+.readme table th,
+.readme table td {
+  border: 1px solid #d0d7de;
+  padding: 6px 13px;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.readme table thead {
+  background-color: #f6f8fa;
+}
+
+.readme table th {
+  font-weight: 600;
+}
+
+.readme table tr {
+  background-color: #ffffff;
+}
+
+.readme table tr:hover {
+  background-color: #f6f8fa;
+}
+
+.readme a{
+  color: var(--accent-color);
+}
+.readme a:hover{
+  color: var(--accent-dark);
+}
+
+  .readme pre {
+    position: relative;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+      "Liberation Mono", monospace;
+    font-size: 13px;
+    line-height: 1.45;
+    background-color: #fff9f5;
+    color: #dd7123;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border: 1px solid #ffbb8e;
+    border-radius: 6px;
+    overflow: auto;
+
+  }
+
+  .readme .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    color: #57606a;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+  }
+
+  .readme .copy-btn:hover {
+    opacity: 1;
+  }
+
+  .readme .copy-btn.copied::after {
+    content: "Copied!";
+    position: absolute;
+    top: -24px;
+    right: 0;
+    background: #24292f;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+
+
+/* END - README */

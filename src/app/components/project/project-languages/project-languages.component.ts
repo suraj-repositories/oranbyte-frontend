@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { of, switchMap, Subscription, catchError } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
+import { LoadingComponent } from '../../loading/loading.component';
 
 @Component({
   selector: 'app-project-languages',
-  imports: [CommonModule],
+  imports: [CommonModule, LoadingComponent],
   templateUrl: './project-languages.component.html',
-  styleUrls: ['./project-languages.component.css']
+  styleUrls: ['./project-languages.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProjectLanguagesComponent {
 

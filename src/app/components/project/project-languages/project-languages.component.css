@@ -2,3 +2,31 @@
 .progress-stacked.low-height{
   height: 10px;
 }
+
+ul.language-list{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+ul.language-list li{
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+ul.language-list li .language-name{
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-right: 5px;
+}
+ul.language-list li .icon{
+  font-size: 12px;
+}
+
+ul.language-list li .percentage{
+  font-size: 10px;
+  color: var(--text-color);
+  margin-left: 5px;
+}

@@ -31,9 +31,17 @@
 
           <hr>
           <h6>Important Link's</h6>
-          <a href="{{projectUrl}}" target="_blank" class="btn btn-dark w-100 text-light mb-3 d-flex align-items-center justify-content-center">
-            <iconify-icon icon="mdi:github"></iconify-icon> &nbsp; Get source code
-          </a>
+          <a
+          [href]="projectUrl || '#'"
+          target="_blank"
+          class="btn btn-dark source-code-btn"
+          [class.disabled]="!projectUrl"
+          [style.pointer-events]="!projectUrl ? 'none' : 'auto'"
+          [style.opacity]="!projectUrl ? '0.5' : '1'"
+        >
+          <iconify-icon icon="mdi:github" class="icon"></iconify-icon> &nbsp; Get source code
+        </a>
+
 
           <hr>
           <h6>Popular Projects</h6>
@@ -45,3 +53,4 @@
   </div>
 
 </section>
+

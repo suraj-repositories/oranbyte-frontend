@@ -15,22 +15,20 @@
         ></div>
       </div>
     }
+
+
   </div>
 
-  <table>
-    @for (row of languageArray; track $index) {
-      @if ($index % 2 === 0) {
-        <tr>
-          <td>{{ row.key }}</td>
-          <td>{{ row.value | number: '1.0-0' }}%</td>
-          @if (languageArray[$index + 1]) {
-            <td>{{ languageArray[$index + 1].key }}</td>
-            <td>{{ languageArray[$index + 1].value | number: '1.0-0' }}%</td>
-          }
-        </tr>
+    <ul class="language-list">
+      @for (row of languageArray; track $index) {
+        <li>
+          <iconify-icon icon="material-symbols:circle" class="icon text-{{ row.key.toLowerCase() }}"></iconify-icon>
+          <span class="language-name">{{ row.key }}</span>
+          <span class="percentage">{{ row.value | number: '1.0-0' }}%</span>
+        </li>
       }
-    }
-  </table>
-
-
+    </ul>
+}@else {
+ <app-loading></app-loading>
 }
+

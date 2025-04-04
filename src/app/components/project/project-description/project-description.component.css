@@ -1,4 +1,28 @@
 h6{
   font-weight: 600;
+  font-size: 15px;
   color: rgba(88, 88, 88, 0.861);
+  margin-bottom: 1.1em;
 }
+
+hr{
+  margin: 1.2em 0;
+  color: rgba(0, 0, 0, 0.438);
+  border: 1px dashed rgba(0, 0, 0, 0.438);
+}
+
+.source-code-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.source-code-btn:hover{
+  background-color: #38393a;
+  color: white;
+}
+.source-code-btn .icon{
+  font-size: 20px;
+}
+
+
