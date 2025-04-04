@@ -1,28 +1,17 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { environment } from 'src/environments/environment';
 import { LoadingComponent } from "../loading/loading.component";
 import { Router } from '@angular/router';
-
-interface ApiResponse {
-  status: string;
-  data: any[];
-}
-function isApiResponse(obj: any): obj is ApiResponse {
-  return (
-    typeof obj === 'object' &&
-    obj !== null &&
-    typeof obj.status === 'string' &&
-    Array.isArray(obj.data)
-  );
-}
+import 'iconify-icon';
 
 @Component({
   selector: 'app-project',
   imports: [RouterLink, LoadingComponent],
   templateUrl: './project.component.html',
-  styleUrl: './project.component.css'
+  styleUrl: './project.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProjectComponent {
   appName = environment.appName;
@@ -41,13 +30,12 @@ export class ProjectComponent {
   loadProjects(){
     this.projectService.getAllWithImage().subscribe({
       next: (response) => {
-        console.log('shubh', response);
-        if (isApiResponse(response)) {
+        if (response) {
 
           if(this.router.url == '/projects'){
-            this.projects = response.data;
+            this.projects = response;
           }else{
-            this.projects = response.data.slice(0, 9);
+            this.projects = response.slice(0, 9);
           }
 
           this.cdRef.detectChanges();
@@ -58,7 +46,11 @@ export class ProjectComponent {
         }
 
       },
-      error: (error) => console.error(error),
+      error: (error) => {
+        console.error(error);
+        this.projects = [];
+        this.cdRef.detectChanges();
+      },
     });
   }
 }

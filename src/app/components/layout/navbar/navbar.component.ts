@@ -3,22 +3,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { environment } from 'src/environments/environment';
 
-
-interface ApiResponse {
-  status: string;
-  data: any[];
-}
-
-function isApiResponse(obj: any): obj is ApiResponse {
-  return (
-    typeof obj === 'object' &&
-    obj !== null &&
-    typeof obj.status === 'string' &&
-    Array.isArray(obj.data)
-  );
-}
-
-
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink],
@@ -43,17 +27,16 @@ export class NavbarComponent {
   loadProjects(){
     this.projectService.getAll().subscribe({
       next: (response) => {
-        if (isApiResponse(response)) {
-          this.projects = response.data;
-          this.cdRef.detectChanges();
-        } else {
-          console.error('Received unexpected response format:', response);
-          this.projects = [];
+        if (response) {
+          this.projects = response;
           this.cdRef.detectChanges();
         }
-
       },
-      error: (error) => console.error(error),
+      error: (error) => {
+        console.error('Received unexpected response format:', error);
+        this.projects = [];
+        this.cdRef.detectChanges();
+      },
     });
   }
 

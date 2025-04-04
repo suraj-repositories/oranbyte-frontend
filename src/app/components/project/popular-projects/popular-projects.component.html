@@ -1,0 +1,25 @@
+<div class="content">
+
+  @for (project of projects; track project.id) {
+  <div class="card">
+      <a [routerLink]="['/project', project.id]">
+        <div class="firstinfo">
+          <div class="profileinfo">
+              <h1>{{ project.name }}</h1>
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="stars">
+                  <iconify-icon icon="prime:star-fill"></iconify-icon>
+                  <small class="fs-12">{{ project.stars }} stars</small>
+                </span>
+                <h3>{{ project.language }}</h3>
+              </div>
+              <p class="bio">{{ project.description }}</p>
+          </div>
+      </div>
+      </a>
+  </div>
+}@empty {
+  <app-loading></app-loading>
+}
+
+</div>

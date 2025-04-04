@@ -85,8 +85,7 @@ h6 {
   font-family: var(--heading-font);
 }
 iconify-icon {
-  font-size: 24px;
-  color: blue;
+  font-size: 16px;
 }
 /* PHP Email Form Messages
 ------------------------------*/
@@ -1758,3 +1757,87 @@ section,
 .section-title span{
   user-select: none !important;
 }
+
+.fs-12{
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stars{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  text-shadow: 2px 2px 2px 2px red;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+/* BEGIN : languages */
+.bg-javascript { background-color: #f0db4f !important;}
+.bg-python     { background-color: #3572A5 !important;}
+.bg-java       { background-color: #b07219 !important;}
+.bg-typescript { background-color: #007ACC !important;}
+.bg-csharp     { background-color: #178600 !important;}
+.bg-cpp        { background-color: #00599C !important;}
+.bg-c          { background-color: #555555 !important;}
+.bg-php        { background-color: #8892BE !important;}
+.bg-ruby       { background-color: #701516 !important;}
+.bg-go         { background-color: #00ADD8 !important;}
+.bg-swift      { background-color: #FA7343 !important;}
+.bg-kotlin     { background-color: #A97BFF !important;}
+.bg-rust       { background-color: #DEA584 !important;}
+.bg-html       { background-color: #e34c26 !important;}
+.bg-css        { background-color: #264de4 !important;}
+.bg-dart       { background-color: #0175C2 !important;}
+.bg-scala      { background-color: #DC322F !important;}
+.bg-shell      { background-color: #89e051 !important;}
+.bg-sql        { background-color: #e38c00 !important;}
+.bg-asm        { background-color: #6E4C13 !important;}
+.bg-vue          { background-color: #41B883 !important;}
+.bg-react        { background-color: #61DAFB !important;}
+.bg-angular      { background-color: #DD0031 !important;}
+.bg-sass         { background-color: #CD6799 !important;}
+.bg-less         { background-color: #1D365D !important;}
+.bg-perl         { background-color: #0298c3 !important;}
+.bg-haskell      { background-color: #5e5086 !important;}
+.bg-elixir       { background-color: #6e4a7e !important;}
+.bg-erlang       { background-color: #B83998 !important;}
+.bg-r            { background-color: #198CE7 !important;}
+.bg-julia        { background-color: #9558B2 !important;}
+.bg-lua          { background-color: #000080 !important;}
+.bg-objc         { background-color: #438EFF !important;}
+.bg-coffeescript { background-color: #244776 !important;}
+.bg-fortran      { background-color: #734F96 !important;}
+.bg-fsharp       { background-color: #b845fc !important;}
+.bg-powershell   { background-color: #012456 !important;}
+.bg-bash         { background-color: #4EAA25 !important;}
+.bg-yaml         { background-color: #cb171e !important;}
+.bg-markdown     { background-color: #083fa1 !important;}
+.bg-ejs         { background-color: #F1E05A !important;}
+.bg-handlebars  { background-color: #f0772b !important;}
+.bg-mustache    { background-color: #724b00 !important;}
+.bg-pug         { background-color: #a86454 !important;}
+.bg-nunjucks    { background-color: #3d8137 !important;}
+.bg-liquid      { background-color: #67b8de !important;}
+.bg-twig        { background-color: #8B9E4D !important;}
+.bg-blade       { background-color: #f05340 !important;}
+.bg-smarty      { background-color: #f1ae1b !important;}
+.bg-erb         { background-color: #701516 !important;}
+.bg-bash  { background-color: #4EAA25 !important;}
+.bg-zsh   { background-color: #89e051 !important; }
+.bg-fish  { background-color: #c1f12e !important; }
+.bg-hack  { background-color: #454545 !important; }
+
+/* Optional fallback */
+.bg-default    { background-color: #ccc !important;}
+
+
+
+/* END : languages */

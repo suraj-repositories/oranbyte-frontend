@@ -2,14 +2,15 @@
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
-    <span class="no-select">School Management system<br></span>
-    <h2>School Management System</h2>
-    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-  </div><!-- End Section Title -->
+    <span class="no-select">{{ projectName }}<br></span>
+    <h2>{{ projectName }}</h2>
+    <p>{{ projectDescription }}</p>
+  </div>
+  <!-- End Section Title -->
 
   <div class="container">
 
-    <div class="row g-4 ">
+    <div class="row g-3 ">
       <div class="col-lg-9 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
         <div class="readme-container">
           @if(safeReadmeHtml) {
@@ -22,14 +23,22 @@
         </div>
       </div>
       <div class="col-lg-3 content" data-aos="fade-up" data-aos-delay="200">
-        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
 
+        <div class="sidebar">
 
-        <p>
-          Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-        </p>
+          <h6>Languages</h6>
+          <app-project-languages></app-project-languages>
+
+          <hr>
+          <h6>Important Link's</h6>
+          <a href="{{projectUrl}}" target="_blank" class="btn btn-dark w-100 text-light mb-3 d-flex align-items-center justify-content-center">
+            <iconify-icon icon="mdi:github"></iconify-icon> &nbsp; Get source code
+          </a>
+
+          <hr>
+          <h6>Popular Projects</h6>
+          <app-popular-projects></app-popular-projects>
+        </div>
       </div>
     </div>
 

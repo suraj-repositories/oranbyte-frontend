@@ -1,0 +1,36 @@
+@if (languageArray.length) {
+  <div class="progress-stacked  low-height">
+    @for (lang of languageArray; track $index) {
+      <div
+        class="progress"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [attr.aria-valuenow]="lang.value"
+        [style.width.%]="lang.value"
+      >
+        <div
+          class="progress-bar progress-bar-striped"
+          [ngClass]="'bg-' + lang.key.toLowerCase()"
+        ></div>
+      </div>
+    }
+  </div>
+
+  <table>
+    @for (row of languageArray; track $index) {
+      @if ($index % 2 === 0) {
+        <tr>
+          <td>{{ row.key }}</td>
+          <td>{{ row.value | number: '1.0-0' }}%</td>
+          @if (languageArray[$index + 1]) {
+            <td>{{ languageArray[$index + 1].key }}</td>
+            <td>{{ languageArray[$index + 1].value | number: '1.0-0' }}%</td>
+          }
+        </tr>
+      }
+    }
+  </table>
+
+
+}
