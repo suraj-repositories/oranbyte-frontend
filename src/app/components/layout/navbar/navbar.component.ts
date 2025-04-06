@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { environment } from 'src/environments/environment';
@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
   selector: 'app-navbar',
   imports: [RouterLink],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
-
+  styleUrl: './navbar.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class NavbarComponent {

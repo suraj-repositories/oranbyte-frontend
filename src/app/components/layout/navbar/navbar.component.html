@@ -24,7 +24,12 @@
               </li>
             }
             @if(projects.length > 9) {
-              <li><a href="#" [routerLink]="['/projects']" class="w-100">See all</a></li>
+              <li>
+                <a [routerLink]="['/projects']" class="w-100">
+                  See all
+                  <iconify-icon icon="solar:multiple-forward-right-broken"></iconify-icon>
+                </a>
+              </li>
             }
 
           </ul>

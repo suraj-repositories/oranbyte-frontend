@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component} from '@angular/core';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-footer',
-  imports: [RouterLink],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  selector: 'app-contact-details',
+  imports: [],
+  templateUrl: './contact-details.component.html',
+  styleUrl: './contact-details.component.css'
 })
-export class FooterComponent {
+export class ContactDetailsComponent {
 
   configs:any = null;
   map_embedded_url: SafeResourceUrl | null = null;
@@ -36,4 +35,6 @@ export class FooterComponent {
       console.log(this.configs['app_name']);
     });
   }
+
+
 }
