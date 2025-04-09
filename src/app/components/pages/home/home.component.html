@@ -7,11 +7,12 @@
         <h5>Hi,</h5>
         <h1>I am <span class="orange">Orange</span></h1>
         <p>An architect of seamless cross-cutting solutions, weaving aspects into the fabric of code. </p>
-        <div class="d-flex">
-          <a href="#about" class="btn-get-started rounded-pill px-2"><span class="px-4">Hire Me</span></a>
-          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+        <div class="d-flex flex-column flex-sm-row">
+          <a href="#about" class="btn-get-started rounded-pill px-2 d-flex center me-2 mb-4 w-auto"><span class="px-4">Hire Me</span></a>
+          <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
             class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-btn"></i><span>Watch
-              Video</span></a>
+              Video</span></a> -->
+          <app-social-media></app-social-media>
         </div>
       </div>
       <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
@@ -118,8 +119,8 @@
         <div class="text-center">
           <h3>Let's Work Together</h3>
           <p>Have a project in mind or need a creative touch? Let's collaborate to bring your ideas to life.
-          Feel free to reach out, and let's create something amazing together!</p>
-          <a class="cta-btn" [routerLink]="['/contact']" >Get in Touch</a>
+            Feel free to reach out, and let's create something amazing together!</p>
+          <a class="cta-btn" [routerLink]="['/contact']">Get in Touch</a>
 
         </div>
       </div>

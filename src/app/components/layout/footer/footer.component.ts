@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SocialMediaComponent } from "../../social-media/social-media.component";
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, SocialMediaComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })

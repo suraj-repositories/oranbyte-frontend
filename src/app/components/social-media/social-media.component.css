@@ -1,0 +1,20 @@
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, #444444, transparent 50%);
+  font-size: 16px;
+  color:
+    color-mix(in srgb, #444444, transparent 20%);
+  margin: 5px 5px;
+  transition: 0.3s;
+  font-size: 22px;
+}
+
+a .icon {
+  font-size: 22px;
+}

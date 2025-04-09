@@ -1,0 +1,10 @@
+<div class="social-links d-flex">
+  @for(socialMedia of socialMediaLinks; track socialMedia.id) {
+    <a href="{{ socialMedia.uri }}" target="_blank" title="{{ socialMedia.name }}">
+      <iconify-icon icon="{{ socialMedia.icon }}" class="icon"></iconify-icon>
+      <!-- <iconify-icon icon="prime:star-fill"></iconify-icon> -->
+    </a>
+  }@empty {
+    <app-loading></app-loading>
+  }
+</div>
