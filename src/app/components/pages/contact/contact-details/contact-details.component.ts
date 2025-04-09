@@ -10,7 +10,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class ContactDetailsComponent {
 
-  configs:any = null;
+  configs:any = {
+    'app_name': '',
+    'address': '',
+    'phone': '',
+    'city': '',
+    'state': '',
+    'pin': '',
+    'country': '',
+    'email': '',
+  };
   map_embedded_url: SafeResourceUrl | null = null;
   configsArray:any = null;
 
