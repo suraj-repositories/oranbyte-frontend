@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SocialMediaComponent } from "../../social-media/social-media.component";
+import { SubscribeComponent } from "../../subscribe/subscribe.component";
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, SocialMediaComponent],
+  imports: [RouterLink, SocialMediaComponent, SubscribeComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
