@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,10 +13,14 @@ import { environment } from 'src/environments/environment';
 
 export class NavbarComponent {
   appName = environment.appName;
+
+  dropdownOpen: boolean = false;
+
   projects: any[] = [];
   constructor(
     private projectService: ProjectService,
     private cdRef: ChangeDetectorRef,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,5 +43,16 @@ export class NavbarComponent {
       },
     });
   }
+
+  toggleNav(){
+    document.body.classList.toggle('mobile-nav-active');
+  }
+
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+
 
 }

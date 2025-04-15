@@ -35,6 +35,7 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
     this.loadProject();
     this.loadReadme();
 
+    // window.scrollTo(0, 0);
   }
 
   ngOnDestroy(): void {

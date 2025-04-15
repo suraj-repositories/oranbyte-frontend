@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LayoutComponent } from "./components/layout/layout/layout.component";
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,12 @@ import { LayoutComponent } from "./components/layout/layout/layout.component";
 })
 export class AppComponent {
   title = 'portfolio-frontend';
+
+  constructor(private router: Router) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 }

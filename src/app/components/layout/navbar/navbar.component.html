@@ -11,33 +11,40 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a [routerLink]="['/home']" class="active">Home</a></li>
-        <li class="dropdown"><a href="#"><span>Projects</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
+        <li>
+          <a [routerLink]="['/home']"  [class.active]="router.url.startsWith('/home')" (click)="toggleNav()">Home</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" [routerLink]="['']" (click)="toggleDropdown()" [class.active]="router.url.startsWith('/project')">
+            <span>Projects</span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+          <ul [class.dropdown-active]="dropdownOpen">
             @for (project of projects.slice(0, 9); track project.id) {
-              <li><a href="#" [routerLink]="['/project', project.id]">{{ project.name }}</a></li>
-            } @empty {
               <li>
-                <a href="#">
-                  Loading...
+                <a
+                  href="#"
+                  [routerLink]="['/project', project.id]"
+                  [class.active]="router.url.startsWith('/project/' + project.id)"
+                  (click)="toggleNav()">
+                  {{ project.name }}
                 </a>
               </li>
+            } @empty {
+              <li><a href="#">Loading...</a></li>
             }
             @if(projects.length > 9) {
               <li>
-                <a [routerLink]="['/projects']" class="w-100">
-                  See all
-                  <iconify-icon icon="solar:multiple-forward-right-broken"></iconify-icon>
-                </a>
+                <a [routerLink]="['/projects']" (click)="toggleNav()" class="w-100">See all</a>
               </li>
             }
-
           </ul>
         </li>
-        <li><a [routerLink]="['/contact']">Contact</a></li>
-        <li><a [routerLink]="['/about']">About</a></li>
+
+        <li><a [routerLink]="['/contact']" [class.active]="router.url.startsWith('/contact')" (click)="toggleNav()">Contact</a></li>
+        <li><a [routerLink]="['/about']" [class.active]="router.url.startsWith('/about')" (click)="toggleNav()">About</a></li>
       </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list" (click)="toggleNav()"></i>
     </nav>
 
     <a class="btn-getstarted" href="index-2.html#about">Hire Me</a>
