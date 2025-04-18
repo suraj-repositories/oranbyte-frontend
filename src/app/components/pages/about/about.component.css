@@ -1,0 +1,30 @@
+ .progress{
+  padding: 0;
+}
+.progress{
+  overflow: visible;
+}
+.progress-bar{
+  position: relative;
+  overflow: visible;
+}
+.progress-bar::after{
+  content: "";
+  height: 30px;
+  width: 30px;
+  background-color: #c0d9ff;
+  right: -14px;
+  position: absolute;
+  border-radius: 50%;
+}
+.progress-bar::before{
+  content: "";
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  right: -7px;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 30;
+}
+

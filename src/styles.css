@@ -19,6 +19,9 @@
   --accent-light: #fcae1e; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --light-gray: #f2f0f0cf;
+  --light-gray-200: #e3e3e3;
+  --second-primary: #8679FF;
 }
 
 :root {
@@ -58,6 +61,25 @@
   scroll-behavior: smooth;
 }
 
+/*--------------------------------------------------------------
+# selection color
+--------------------------------------------------------------*/
+*::selection {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+*::-moz-selection {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+*::-webkit-selection {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+
+/*--------------------------------------------------------------
+# end selection color
+--------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
