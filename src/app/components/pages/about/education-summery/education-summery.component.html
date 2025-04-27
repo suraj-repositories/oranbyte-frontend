@@ -10,48 +10,42 @@
 
   <div id="cd-timeline" class="container cd-container">
 
+    @for (education of educations; track education.id; let i = $index){
     <div class="cd-timeline-block">
-
+      @if(i == 0){
         <iconify-icon icon="bi:rocket" class="rocket"></iconify-icon>
-
+      }
 
       <div class="cd-timeline-img cd-picture">
       </div>
 
       <div class="cd-timeline-content">
-        <h2>Penta Consulting</h2>
+        <h2>{{ education.institution }}</h2>
+
         <div class="timeline-content-info">
           <span class="timeline-content-info-title">
             <i class="fa fa-certificate" aria-hidden="true"></i>
-            Front End Developer
+            {{ education.degree }}
           </span>
           <span class="timeline-content-info-date">
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            Lucknow, India
+            {{ education.field_of_study }}
           </span>
         </div>
-        <p>Working alongside the designer team implementing the designs, also developing custom solutions to address team necessities.</p>
+        <p>{{ education.description }}</p>
         <ul class="content-skills">
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>JavaScript</li>
-        <li>jQuery</li>
-        <li>Wordpress</li>
+        <li class="w-fit-content">Grade - <b>{{ education.grade }}</b></li>
+
         </ul>
-        <span class="cd-date">Jan 2018 - July 2020</span>
+        <span class="cd-date">
+          {{ education.start_date | date: 'MMM yyyy' }}
+          -
+          {{ education.end_date ? (education.end_date | date: 'MMM yyyy') : 'Present' }}
+        </span>
       </div> <!-- cd-timeline-content -->
     </div> <!-- cd-timeline-block -->
+    }
 
-    <div class="cd-timeline-block">
-      <div class="cd-timeline-img cd-movie">
-      </div> <!-- cd-timeline-img -->
-
-      <div class="cd-timeline-content">
-        <h2>Title of section 2</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-        <span class="cd-date">Jan 2018 - July 2020</span>
-      </div> <!-- cd-timeline-content -->
-    </div> <!-- cd-timeline-block -->
 
 
   </div>
