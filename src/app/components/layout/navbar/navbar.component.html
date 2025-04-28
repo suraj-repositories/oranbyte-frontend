@@ -34,7 +34,11 @@
             }
             @if(projects.length > 9) {
               <li>
-                <a [routerLink]="['/projects']" (click)="toggleNav()" class="w-100">See all</a>
+                <a [routerLink]="['/projects']" (click)="toggleNav()" class="w-100 d-flex justify-content-between align-items-center">
+                  <span>Show all</span>
+                  <iconify-icon icon="mingcute:arrows-right-line" class="icon" ></iconify-icon>
+                </a>
+
               </li>
             }
           </ul>
