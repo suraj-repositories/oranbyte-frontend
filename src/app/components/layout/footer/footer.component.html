@@ -21,8 +21,22 @@
         <div class="footer-contact pt-3">
           <p>{{ configs['address']  }}</p>
           <p>{{ configs['city']  }} {{ configs['pin']  }}, {{ configs['state']  }} {{ configs['country']  }}</p>
-          <p class="mt-3"><strong>Phone:</strong> <span>{{configs['phone']}}</span></p>
-          <p><strong>Email : </strong> <span>{{ configs['email'] }}</span></p>
+
+          <div class="mt-3 detail">
+            <div class="icon">
+              <iconify-icon icon="fluent:call-24-filled" class="icon"></iconify-icon>
+            </div>
+            <strong>Phone:</strong>
+            <span>{{configs['phone']}}</span>
+          </div>
+          <div class="mt-2 detail">
+            <div class="icon">
+              <iconify-icon icon="fluent:mail-24-regular" class="icon"></iconify-icon>
+            </div>
+            <strong>Email:</strong>
+            <span>{{configs['email']}}</span>
+          </div>
+
         </div>
       </div>
 
@@ -58,10 +72,6 @@
   <div class="container copyright text-center mt-4">
     <p>© <span>Copyright</span> <strong class="px-1 sitename">Oranbyte</strong> <span>All Rights Reserved</span></p>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you've purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
       Designed by <a href="https://github.com/ProjectsAndPrograms/" class="orange">ProjectsAndPrograms</a> Distributed by <a
         href="/" class="orange">Oranbyte
       </a>

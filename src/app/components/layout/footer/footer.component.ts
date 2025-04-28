@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -9,7 +9,8 @@ import { SubscribeComponent } from "../../subscribe/subscribe.component";
   selector: 'app-footer',
   imports: [RouterLink, SocialMediaComponent, SubscribeComponent],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FooterComponent {
 

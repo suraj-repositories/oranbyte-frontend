@@ -1,0 +1,21 @@
+.detail{
+  display: flex;
+  align-items: center;
+
+}
+.detail .icon{
+  width: 40px;
+  height: 40px;
+  color: var(--accent-color);
+  background: var(--accent-background-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.detail strong{
+  margin-left: 10px;
+  margin-right: 5px;
+}

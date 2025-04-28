@@ -12,7 +12,7 @@
 
     <div class="row g-3 ">
       <div class="col-lg-9 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-        <div class="readme-container">
+        <div class="readme-container" data-image-preview="true">
           @if(safeReadmeHtml) {
             <div class="readme" [innerHTML]="safeReadmeHtml"></div>
           } @else if (readmeContent) {
@@ -24,7 +24,7 @@
       </div>
       <div class="col-lg-3 content" data-aos="fade-up" data-aos-delay="200">
 
-        <div class="sidebar">
+        <div class="sidebar" data-aos="fade-up" data-aos-delay="300">
 
           <h6>Languages</h6>
           <app-project-languages></app-project-languages>

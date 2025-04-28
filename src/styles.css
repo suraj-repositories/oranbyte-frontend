@@ -6,8 +6,8 @@
 :root {
   /* --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
   --default-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Ubuntu",  sans-serif;
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Ubuntu", sans-serif;
 }
 
 :root {
@@ -17,6 +17,7 @@
   --accent-color: #fca503;
   --accent-dark: #ff6a00e9;
   --accent-light: #fcae1e;
+  --accent-background-color: #fef0d6;
   --surface-color: #ffffff;
   --contrast-color: #ffffff;
   --light-gray: #f2f0f0cf;
@@ -25,12 +26,18 @@
 }
 
 :root {
-  --nav-color: #5f687b;  /* The default color of the main navmenu links */
-  --nav-hover-color: #fca503; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #5f687b; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #fca503; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #5f687b;
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #fca503;
+  /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff;
+  /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff;
+  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #5f687b;
+  /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #fca503;
+  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 .light-background {
@@ -63,16 +70,18 @@
 # selection color
 --------------------------------------------------------------*/
 *::selection {
-  background: var(--accent-color);
-  color: #ffffff;
+  color: #ff922d;
+  background: var(--accent-background-color);
 }
+
 *::-moz-selection {
-  background: var(--accent-color);
-  color: #ffffff;
+  color: #ff922d;
+  background: var(--accent-background-color);
 }
+
 *::-webkit-selection {
-  background: var(--accent-color);
-  color: #ffffff;
+  color: #ff922d;
+  background: var(--accent-background-color);
 }
 
 /*--------------------------------------------------------------
@@ -108,9 +117,15 @@ h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
+
 iconify-icon {
   font-size: 16px;
 }
+
+a {
+  color: var(--accent-color);
+}
+
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {
@@ -253,6 +268,7 @@ iconify-icon {
   z-index: 997;
   box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.081) !important;
 }
+
 .header .logo {
   line-height: 1;
 }
@@ -268,13 +284,21 @@ iconify-icon {
   font-weight: 700;
   color: var(--heading-color);
 }
-a{
+
+a {
   text-decoration: none !important;
 }
+
 .header .btn-getstarted,
 .header .btn-getstarted:focus {
-  color: var(--contrast-color);
-  background: var(--accent-color);
+  background-image: linear-gradient(to right, #FF8008 0%, #FFC837 51%, #FF8008 100%);
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
   font-size: 14px;
   padding: 8px 25px;
   margin: 0 0 0 30px;
@@ -284,8 +308,9 @@ a{
 
 .header .btn-getstarted:hover,
 .header .btn-getstarted:focus:hover {
-  color: var(--contrast-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
 
 @media (max-width: 1200px) {
@@ -447,6 +472,7 @@ a{
     transition: 0.3s;
     z-index: 9998;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
   }
 
   .navmenu a,
@@ -507,6 +533,12 @@ a{
     border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
     box-shadow: none;
     transition: all 0.5s ease-in-out;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: white;
+    border: none;
+    padding-left: 20px;
   }
 
   .navmenu .dropdown ul ul {
@@ -770,7 +802,7 @@ a{
   bottom: 15px;
 }
 
-.no-select{
+.no-select {
   user-select: none !important;
 }
 
@@ -822,9 +854,11 @@ a{
   padding-right: 10px;
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
-.orange{
+
+.orange {
   color: orange !important;
 }
+
 /*--------------------------------------------------------------
 # Global Sections
 --------------------------------------------------------------*/
@@ -844,9 +878,9 @@ section,
     scroll-margin-top: 66px;
   }
 
-  .header{
+  .header {
     padding: 13px 0;
-   }
+  }
 }
 
 /*--------------------------------------------------------------
@@ -926,24 +960,23 @@ section,
 }
 
 .hero .btn-get-started {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  font-family: var(--heading-font);
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
+  background-image: linear-gradient(to right, #FF8008 0%, #FFC837 51%, #FF8008 100%);
   padding: 10px 28px 12px 28px;
-  border-radius: 50px;
+  text-align: center;
   transition: 0.5s;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
 }
 
 .hero .btn-get-started:hover {
-  color: var(--contrast-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 15%);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
+
 
 .hero .btn-watch-video {
   font-size: 16px;
@@ -1582,10 +1615,12 @@ section,
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
+
 .contact .php-email-form button[type=submit]:disabled {
   background: #000000a8;
   color: white;
 }
+
 /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
@@ -1788,16 +1823,17 @@ section,
 .starter-section {
   /* Add your styles here */
 }
-.section-title span{
+
+.section-title span {
   user-select: none !important;
 }
 
-.fs-12{
+.fs-12 {
   font-size: 12px;
   font-weight: 500;
 }
 
-.stars{
+.stars {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1805,7 +1841,7 @@ section,
   text-shadow: 2px 2px 2px 2px red;
 }
 
-.center{
+.center {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1814,146 +1850,472 @@ section,
 
 
 /* BEGIN : languages */
-.bg-javascript { background-color: #f0db4f !important;}
-.bg-python     { background-color: #3572A5 !important;}
-.bg-java       { background-color: #b07219 !important;}
-.bg-typescript { background-color: #007ACC !important;}
-.bg-csharp     { background-color: #178600 !important;}
-.bg-cpp        { background-color: #00599C !important;}
-.bg-c          { background-color: #555555 !important;}
-.bg-php        { background-color: #8892BE !important;}
-.bg-ruby       { background-color: #701516 !important;}
-.bg-go         { background-color: #00ADD8 !important;}
-.bg-swift      { background-color: #FA7343 !important;}
-.bg-kotlin     { background-color: #A97BFF !important;}
-.bg-rust       { background-color: #DEA584 !important;}
-.bg-html       { background-color: #e34c26 !important;}
-.bg-css        { background-color: #264de4 !important;}
-.bg-dart       { background-color: #0175C2 !important;}
-.bg-scala      { background-color: #DC322F !important;}
-.bg-shell      { background-color: #89e051 !important;}
-.bg-sql        { background-color: #e38c00 !important;}
-.bg-asm        { background-color: #6E4C13 !important;}
-.bg-vue          { background-color: #41B883 !important;}
-.bg-react        { background-color: #61DAFB !important;}
-.bg-angular      { background-color: #DD0031 !important;}
-.bg-sass         { background-color: #CD6799 !important;}
-.bg-less         { background-color: #1D365D !important;}
-.bg-perl         { background-color: #0298c3 !important;}
-.bg-haskell      { background-color: #5e5086 !important;}
-.bg-elixir       { background-color: #6e4a7e !important;}
-.bg-erlang       { background-color: #B83998 !important;}
-.bg-r            { background-color: #198CE7 !important;}
-.bg-julia        { background-color: #9558B2 !important;}
-.bg-lua          { background-color: #000080 !important;}
-.bg-objc         { background-color: #438EFF !important;}
-.bg-coffeescript { background-color: #244776 !important;}
-.bg-fortran      { background-color: #734F96 !important;}
-.bg-fsharp       { background-color: #b845fc !important;}
-.bg-powershell   { background-color: #012456 !important;}
-.bg-bash         { background-color: #4EAA25 !important;}
-.bg-yaml         { background-color: #cb171e !important;}
-.bg-markdown     { background-color: #083fa1 !important;}
-.bg-ejs         { background-color: #F1E05A !important;}
-.bg-handlebars  { background-color: #f0772b !important;}
-.bg-mustache    { background-color: #724b00 !important;}
-.bg-pug         { background-color: #a86454 !important;}
-.bg-nunjucks    { background-color: #3d8137 !important;}
-.bg-liquid      { background-color: #67b8de !important;}
-.bg-twig        { background-color: #8B9E4D !important;}
-.bg-blade       { background-color: #f05340 !important;}
-.bg-smarty      { background-color: #f1ae1b !important;}
-.bg-erb         { background-color: #701516 !important;}
-.bg-bash  { background-color: #4EAA25 !important;}
-.bg-zsh   { background-color: #89e051 !important; }
-.bg-fish  { background-color: #c1f12e !important; }
-.bg-hack  { background-color: #454545 !important; }
+.bg-javascript {
+  background-color: #f0db4f !important;
+}
+
+.bg-python {
+  background-color: #3572A5 !important;
+}
+
+.bg-java {
+  background-color: #b07219 !important;
+}
+
+.bg-typescript {
+  background-color: #007ACC !important;
+}
+
+.bg-csharp {
+  background-color: #178600 !important;
+}
+
+.bg-cpp {
+  background-color: #00599C !important;
+}
+
+.bg-c {
+  background-color: #555555 !important;
+}
+
+.bg-php {
+  background-color: #8892BE !important;
+}
+
+.bg-ruby {
+  background-color: #701516 !important;
+}
+
+.bg-go {
+  background-color: #00ADD8 !important;
+}
+
+.bg-swift {
+  background-color: #FA7343 !important;
+}
+
+.bg-kotlin {
+  background-color: #A97BFF !important;
+}
+
+.bg-rust {
+  background-color: #DEA584 !important;
+}
+
+.bg-html {
+  background-color: #e34c26 !important;
+}
+
+.bg-css {
+  background-color: #264de4 !important;
+}
+
+.bg-dart {
+  background-color: #0175C2 !important;
+}
+
+.bg-scala {
+  background-color: #DC322F !important;
+}
+
+.bg-shell {
+  background-color: #89e051 !important;
+}
+
+.bg-sql {
+  background-color: #e38c00 !important;
+}
+
+.bg-asm {
+  background-color: #6E4C13 !important;
+}
+
+.bg-vue {
+  background-color: #41B883 !important;
+}
+
+.bg-react {
+  background-color: #61DAFB !important;
+}
+
+.bg-angular {
+  background-color: #DD0031 !important;
+}
+
+.bg-sass {
+  background-color: #CD6799 !important;
+}
+
+.bg-less {
+  background-color: #1D365D !important;
+}
+
+.bg-perl {
+  background-color: #0298c3 !important;
+}
+
+.bg-haskell {
+  background-color: #5e5086 !important;
+}
+
+.bg-elixir {
+  background-color: #6e4a7e !important;
+}
+
+.bg-erlang {
+  background-color: #B83998 !important;
+}
+
+.bg-r {
+  background-color: #198CE7 !important;
+}
+
+.bg-julia {
+  background-color: #9558B2 !important;
+}
+
+.bg-lua {
+  background-color: #000080 !important;
+}
+
+.bg-objc {
+  background-color: #438EFF !important;
+}
+
+.bg-coffeescript {
+  background-color: #244776 !important;
+}
+
+.bg-fortran {
+  background-color: #734F96 !important;
+}
+
+.bg-fsharp {
+  background-color: #b845fc !important;
+}
+
+.bg-powershell {
+  background-color: #012456 !important;
+}
+
+.bg-bash {
+  background-color: #4EAA25 !important;
+}
+
+.bg-yaml {
+  background-color: #cb171e !important;
+}
+
+.bg-markdown {
+  background-color: #083fa1 !important;
+}
+
+.bg-ejs {
+  background-color: #F1E05A !important;
+}
+
+.bg-handlebars {
+  background-color: #f0772b !important;
+}
+
+.bg-mustache {
+  background-color: #724b00 !important;
+}
+
+.bg-pug {
+  background-color: #a86454 !important;
+}
+
+.bg-nunjucks {
+  background-color: #3d8137 !important;
+}
+
+.bg-liquid {
+  background-color: #67b8de !important;
+}
+
+.bg-twig {
+  background-color: #8B9E4D !important;
+}
+
+.bg-blade {
+  background-color: #f05340 !important;
+}
+
+.bg-smarty {
+  background-color: #f1ae1b !important;
+}
+
+.bg-erb {
+  background-color: #701516 !important;
+}
+
+.bg-bash {
+  background-color: #4EAA25 !important;
+}
+
+.bg-zsh {
+  background-color: #89e051 !important;
+}
+
+.bg-fish {
+  background-color: #c1f12e !important;
+}
+
+.bg-hack {
+  background-color: #454545 !important;
+}
 
 /* Optional fallback */
-.bg-default    { background-color: #ccc !important;}
+.bg-default {
+  background-color: #ccc !important;
+}
 
 /* BEGIN : languages (text colors) */
-.text-javascript { color: #f0db4f !important; }
-.text-python     { color: #3572A5 !important; }
-.text-java       { color: #b07219 !important; }
-.text-typescript { color: #007ACC !important; }
-.text-csharp     { color: #178600 !important; }
-.text-cpp        { color: #00599C !important; }
-.text-c          { color: #555555 !important; }
-.text-php        { color: #8892BE !important; }
-.text-ruby       { color: #701516 !important; }
-.text-go         { color: #00ADD8 !important; }
-.text-swift      { color: #FA7343 !important; }
-.text-kotlin     { color: #A97BFF !important; }
-.text-rust       { color: #DEA584 !important; }
-.text-html       { color: #e34c26 !important; }
-.text-css        { color: #264de4 !important; }
-.text-dart       { color: #0175C2 !important; }
-.text-scala      { color: #DC322F !important; }
-.text-shell      { color: #89e051 !important; }
-.text-sql        { color: #e38c00 !important; }
-.text-asm        { color: #6E4C13 !important; }
-.text-vue        { color: #41B883 !important; }
-.text-react      { color: #61DAFB !important; }
-.text-angular    { color: #DD0031 !important; }
-.text-sass       { color: #CD6799 !important; }
-.text-less       { color: #1D365D !important; }
-.text-perl       { color: #0298c3 !important; }
-.text-haskell    { color: #5e5086 !important; }
-.text-elixir     { color: #6e4a7e !important; }
-.text-erlang     { color: #B83998 !important; }
-.text-r          { color: #198CE7 !important; }
-.text-julia      { color: #9558B2 !important; }
-.text-lua        { color: #000080 !important; }
-.text-objc       { color: #438EFF !important; }
-.text-coffeescript { color: #244776 !important; }
-.text-fortran    { color: #734F96 !important; }
-.text-fsharp     { color: #b845fc !important; }
-.text-powershell { color: #012456 !important; }
-.text-bash       { color: #4EAA25 !important; }
-.text-zsh        { color: #89e051 !important; }
-.text-fish       { color: #c1f12e !important; }
-.text-hack       { color: #454545 !important; }
-.text-yaml       { color: #cb171e !important; }
-.text-markdown   { color: #083fa1 !important; }
-.text-ejs        { color: #F1E05A !important; }
-.text-handlebars { color: #f0772b !important; }
-.text-mustache   { color: #724b00 !important; }
-.text-pug        { color: #a86454 !important; }
-.text-nunjucks   { color: #3d8137 !important; }
-.text-liquid     { color: #67b8de !important; }
-.text-twig       { color: #8B9E4D !important; }
-.text-blade      { color: #f05340 !important; }
-.text-smarty     { color: #f1ae1b !important; }
-.text-erb        { color: #701516 !important; }
+.text-javascript {
+  color: #f0db4f !important;
+}
+
+.text-python {
+  color: #3572A5 !important;
+}
+
+.text-java {
+  color: #b07219 !important;
+}
+
+.text-typescript {
+  color: #007ACC !important;
+}
+
+.text-csharp {
+  color: #178600 !important;
+}
+
+.text-cpp {
+  color: #00599C !important;
+}
+
+.text-c {
+  color: #555555 !important;
+}
+
+.text-php {
+  color: #8892BE !important;
+}
+
+.text-ruby {
+  color: #701516 !important;
+}
+
+.text-go {
+  color: #00ADD8 !important;
+}
+
+.text-swift {
+  color: #FA7343 !important;
+}
+
+.text-kotlin {
+  color: #A97BFF !important;
+}
+
+.text-rust {
+  color: #DEA584 !important;
+}
+
+.text-html {
+  color: #e34c26 !important;
+}
+
+.text-css {
+  color: #264de4 !important;
+}
+
+.text-dart {
+  color: #0175C2 !important;
+}
+
+.text-scala {
+  color: #DC322F !important;
+}
+
+.text-shell {
+  color: #89e051 !important;
+}
+
+.text-sql {
+  color: #e38c00 !important;
+}
+
+.text-asm {
+  color: #6E4C13 !important;
+}
+
+.text-vue {
+  color: #41B883 !important;
+}
+
+.text-react {
+  color: #61DAFB !important;
+}
+
+.text-angular {
+  color: #DD0031 !important;
+}
+
+.text-sass {
+  color: #CD6799 !important;
+}
+
+.text-less {
+  color: #1D365D !important;
+}
+
+.text-perl {
+  color: #0298c3 !important;
+}
+
+.text-haskell {
+  color: #5e5086 !important;
+}
+
+.text-elixir {
+  color: #6e4a7e !important;
+}
+
+.text-erlang {
+  color: #B83998 !important;
+}
+
+.text-r {
+  color: #198CE7 !important;
+}
+
+.text-julia {
+  color: #9558B2 !important;
+}
+
+.text-lua {
+  color: #000080 !important;
+}
+
+.text-objc {
+  color: #438EFF !important;
+}
+
+.text-coffeescript {
+  color: #244776 !important;
+}
+
+.text-fortran {
+  color: #734F96 !important;
+}
+
+.text-fsharp {
+  color: #b845fc !important;
+}
+
+.text-powershell {
+  color: #012456 !important;
+}
+
+.text-bash {
+  color: #4EAA25 !important;
+}
+
+.text-zsh {
+  color: #89e051 !important;
+}
+
+.text-fish {
+  color: #c1f12e !important;
+}
+
+.text-hack {
+  color: #454545 !important;
+}
+
+.text-yaml {
+  color: #cb171e !important;
+}
+
+.text-markdown {
+  color: #083fa1 !important;
+}
+
+.text-ejs {
+  color: #F1E05A !important;
+}
+
+.text-handlebars {
+  color: #f0772b !important;
+}
+
+.text-mustache {
+  color: #724b00 !important;
+}
+
+.text-pug {
+  color: #a86454 !important;
+}
+
+.text-nunjucks {
+  color: #3d8137 !important;
+}
+
+.text-liquid {
+  color: #67b8de !important;
+}
+
+.text-twig {
+  color: #8B9E4D !important;
+}
+
+.text-blade {
+  color: #f05340 !important;
+}
+
+.text-smarty {
+  color: #f1ae1b !important;
+}
+
+.text-erb {
+  color: #701516 !important;
+}
 
 /* Optional fallback */
-.text-default    { color: #ccc !important; }
+.text-default {
+  color: #ccc !important;
+}
 
 
 /* END : languages */
 
 
 /* BEGIN - README */
-.readme{
+.readme {
   font-family: var(--default-font);
 }
-.readme img{
+
+.readme img {
   user-select: none !important;
   margin: 2px 0;
 }
 
-.readme h1{
+.readme h1 {
   font-size: 1.7em !important;
   margin: 0.5em 0;
   font-weight: 600;
 }
-.readme h2{
+
+.readme h2 {
   font-size: 1.5em !important;
   margin: 0.5em 0;
   font-weight: 600;
 }
-.readme h3{
+
+.readme h3 {
   font-size: 1.3em !important;
   margin: 0.5em 0;
   font-weight: 600;
@@ -1962,6 +2324,7 @@ section,
 .readme ol li::marker {
   font-weight: bold;
 }
+
 .readme table {
   border-collapse: collapse;
   margin-top: 16px;
@@ -2000,67 +2363,68 @@ section,
   background-color: #f6f8fa;
 }
 
-.readme a{
+.readme a {
   color: var(--accent-color);
 }
-.readme a:hover{
+
+.readme a:hover {
   color: var(--accent-dark);
 }
 
-  .readme pre {
-    position: relative;
-    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
-      "Liberation Mono", monospace;
-    font-size: 13px;
-    line-height: 1.45;
-    background-color: #fff9f5;
-    color: #dd7123;
-    padding: 12px 16px;
-    margin: 16px 0;
-    border: 1px solid #ffbb8e;
-    border-radius: 6px;
-    overflow: auto;
+.readme pre {
+  position: relative;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 13px;
+  line-height: 1.45;
+  background-color: #fff9f5;
+  color: #dd7123;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border: 1px solid #ffbb8e;
+  border-radius: 6px;
+  overflow: auto;
 
-  }
+}
 
-  .readme .copy-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #f6f8fa;
-    border: 1px solid #d0d7de;
-    color: #57606a;
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-    z-index: 2;
-  }
+.readme .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  color: #57606a;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
 
-  .readme .copy-btn:hover {
-    opacity: 1;
-  }
+.readme .copy-btn:hover {
+  opacity: 1;
+}
 
-  .readme .copy-btn.copied::after {
-    content: "Copied!";
-    position: absolute;
-    top: -24px;
-    right: 0;
-    background: #24292f;
-    color: #ffffff;
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
+.readme .copy-btn.copied::after {
+  content: "Copied!";
+  position: absolute;
+  top: -24px;
+  right: 0;
+  background: #24292f;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
 
 
 
 /* END - README */
 
-.term-content h4{
+.term-content h4 {
   color: #474c5ae9;
   font-weight: 800;
   font-size: 20px;

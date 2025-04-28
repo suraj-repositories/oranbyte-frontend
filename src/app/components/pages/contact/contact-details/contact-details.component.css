@@ -1,0 +1,17 @@
+.info-wrap{
+  position: relative;
+  overflow: hidden;
+}
+.info-item{
+  z-index: 22;
+}
+
+.decorative-img{
+  position: absolute;
+  top: -104px;
+  right: -74px;
+  width: 150px;
+  height: auto;
+  opacity: 0.7;
+  z-index: 1;
+}

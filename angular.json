@@ -29,6 +29,7 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "public/assets/vendor/orange-preview-lib/orange-preview.css",
               "public/assets/vendor/swiper/swiper-bundle.min.css",
               "public/assets/vendor/glightbox/css/glightbox.min.css",
               "public/assets/vendor/bootstrap-icons/bootstrap-icons.css",
@@ -37,6 +38,7 @@
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/jquery/dist/jquery.min.js",
+              "public/assets/vendor/orange-preview-lib/orange-preview.js",
               "public/assets/vendor/php-email-form/validate.js",
               "public/assets/vendor/aos/aos.js",
               "public/assets/vendor/glightbox/js/glightbox.min.js",
