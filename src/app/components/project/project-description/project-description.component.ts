@@ -110,7 +110,6 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
     }
     const htmlContent = await marked.parse(markdown);
     const sanitize = this.sanitizer.bypassSecurityTrustHtml(htmlContent)
-    console.log();
     return sanitize;
   }
 

@@ -3,55 +3,14 @@
   <div class="container">
 
     <div class="container section-title" data-aos="fade-up">
+       <span>Terms and Conditions<br></span>
       <h2>Terms and Conditions</h2>
     </div>
 
     <h1></h1>
-  <p><strong>Last Updated:</strong> [Insert Date]</p>
+  <p><strong>Last Updated:</strong>  {{ term.updated_at | date: 'dd MMM, yyyy' }}</p>
 
-  <p>Welcome to <strong>[Your Website Name]</strong> ("Website"). These Terms and Conditions govern your use of this Website. By accessing or using the Website, you agree to abide by these terms. If you do not agree, please refrain from using this Website.</p>
-
-  <h4 class="mt-4">1. Use of Website</h4>
-  <ul>
-      <li>This Website is designed to showcase the personal portfolio, projects, and work of <strong>[Your Name]</strong>.</li>
-      <li>You may browse the content for personal and non-commercial use only.</li>
-      <li>Unauthorized copying, redistribution, or commercial use of any content without prior written consent is prohibited.</li>
-  </ul>
-
-  <h4 class="mt-4">2. Intellectual Property</h4>
-  <ul>
-      <li>All content, including but not limited to images, text, graphics, logos, and design elements, are the intellectual property of <strong>[Your Name]</strong> unless otherwise stated.</li>
-      <li>Any unauthorized use, reproduction, or distribution of the content may result in legal action.</li>
-  </ul>
-
-  <h4 class="mt-4">3. User Conduct</h4>
-  <ul>
-      <li>You agree not to engage in any activity that may harm, disrupt, or interfere with the Website's functionality.</li>
-      <li>You shall not use this Website for any unlawful purpose.</li>
-  </ul>
-
-  <h4 class="mt-4">4. Third-Party Links</h4>
-  <p>This Website may contain links to third-party websites. These links are provided for reference only, and <strong>[Your Name]</strong> is not responsible for the content or privacy practices of any third-party site.</p>
-
-  <h4 class="mt-4">5. Disclaimer</h4>
-  <p>The content on this Website is provided for informational and portfolio purposes only.</p>
-  <p>While efforts are made to ensure accuracy, <strong>[Your Name]</strong> does not guarantee that the Website will be error-free or uninterrupted.</p>
-
-  <h4 class="mt-4">6. Limitation of Liability</h4>
-  <p>Under no circumstances shall <strong>[Your Name]</strong> be held liable for any direct, indirect, incidental, or consequential damages arising from your use of the Website.</p>
-
-  <h4 class="mt-4">7. Changes to Terms</h4>
-  <p><strong>[Your Name]</strong> reserves the right to update or modify these Terms and Conditions at any time without prior notice.</p>
-  <p>Continued use of the Website after changes are posted constitutes acceptance of the revised terms.</p>
-
-  <h4 class="mt-4">8. Governing Law</h4>
-  <p>These Terms shall be governed by and interpreted in accordance with the laws of <strong>[Your Country/State]</strong>.</p>
-
-  <h4 class="mt-4">9. Contact Information</h4>
-  <p>If you have any questions regarding these Terms and Conditions, please contact <strong>[Your Email or Contact Form]</strong>.</p>
-
-  <p>By continuing to use this Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
-
+  <div class="term-content" [innerHTML]="term.content"></div>
 
   </div>
 
