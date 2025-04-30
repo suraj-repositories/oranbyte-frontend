@@ -158,10 +158,14 @@
   color: #5F687B;
   font-size: 13px;
   font-size: 0.8125rem;
-  text-align: center;
+  text-align: justify;
   right: 136%;
   top: 13%;
 }
+.cd-timeline-content .cd-date{
+  text-align: center;
+}
+
 .cd-timeline-content .cd-date {
   display: inline-block;
 }
