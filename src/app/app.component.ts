@@ -9,7 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'portfolio-frontend';
+  title = 'oranbyte-frontend';
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {
