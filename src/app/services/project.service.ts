@@ -29,8 +29,16 @@ export class ProjectService {
     );
   }
 
-  getProjectReadmeById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/project/${id}/readme`).pipe(
+  getProjectByName(name: String): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/project/${name}`).pipe(
+      tap(response => {
+        console.log(response);
+      })
+    );
+  }
+
+  getProjectReadmeByProjectName(name: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/project/${name}/readme`).pipe(
       tap(response => {
         console.log(response);
       })
@@ -54,8 +62,8 @@ export class ProjectService {
     );
   }
 
-  getProjectLanguages(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/project/${id}/languages`).pipe(
+  getProjectLanguages(projectName: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/project/${projectName}/languages`).pipe(
       tap(response => {
         console.log(response);
       })

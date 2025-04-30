@@ -23,8 +23,8 @@
               <li>
                 <a
                   href="#"
-                  [routerLink]="['/project', project.id]"
-                  [class.active]="router.url.startsWith('/project/' + project.id)"
+                  [routerLink]="['/projects', project.name.toLowerCase()]"
+                  [class.active]="router.url.startsWith('/projects/' + project.name.toLowerCase())"
                   (click)="toggleNav()">
                   {{ project.name }}
                 </a>

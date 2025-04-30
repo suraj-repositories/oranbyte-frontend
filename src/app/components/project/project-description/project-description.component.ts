@@ -47,9 +47,9 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
   loadProject(){
     this.routeSubscription = this.route.paramMap.pipe(
       switchMap(params => {
-        this.projectId = Number(params.get('id'));
-        if (this.projectId) {
-          return this.projectService.getProjectById(this.projectId).pipe(
+        this.projectName = params.get('name');
+        if (this.projectName) {
+          return this.projectService.getProjectByName(this.projectName).pipe(
             catchError(error => {
               return of({ data: null });
             })
@@ -60,6 +60,7 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (response) => {
         if (response) {
+          this.projectId = response.id;
           this.projectName = response.name;
           this.projectDescription = response.description;
           this.projectUrl = response.url;
@@ -77,9 +78,9 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
   loadReadme(){
     this.routeSubscription = this.route.paramMap.pipe(
       switchMap(params => {
-        this.projectId = Number(params.get('id'));
-        if (this.projectId) {
-          return this.projectService.getProjectReadmeById(this.projectId).pipe(
+        this.projectName = params.get('name');
+        if (this.projectName) {
+          return this.projectService.getProjectReadmeByProjectName(this.projectName).pipe(
             catchError(error => {
               return of({ data: null });
             })

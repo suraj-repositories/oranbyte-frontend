@@ -2,7 +2,7 @@
 
   @for (project of projects; track project.id) {
   <div class="card">
-      <a [routerLink]="['/project', project.id]">
+      <a [routerLink]="['/projects', project.name.toLowerCase()]">
         <div class="firstinfo">
           <div class="profileinfo">
               <h1>{{ project.name }}</h1>

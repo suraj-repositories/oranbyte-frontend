@@ -15,6 +15,7 @@ import { LoadingComponent } from '../../loading/loading.component';
 export class ProjectLanguagesComponent {
 
   projectId: number | null = null;
+  projectName: string | null = null;
   languages: any | null = null;
 
   private routeSubscription: Subscription | undefined;
@@ -35,9 +36,9 @@ export class ProjectLanguagesComponent {
   getProjectLanguages() {
     this.routeSubscription = this.route.paramMap.pipe(
       switchMap(params => {
-        this.projectId = Number(params.get('id'));
-        if (this.projectId) {
-          return this.projectService.getProjectLanguages(this.projectId).pipe(
+        this.projectName = params.get('name');
+        if (this.projectName) {
+          return this.projectService.getProjectLanguages(this.projectName).pipe(
             catchError(error => {
               console.error('Error fetching project languages:', error);
               return of(null);

@@ -15,6 +15,12 @@
   font-size: 22px;
 }
 
+.detail .icon:hover{
+  background: var(--accent-color);
+  color: white;
+  transition: 0.3s;
+}
+
 .detail strong{
   margin-left: 10px;
   margin-right: 5px;

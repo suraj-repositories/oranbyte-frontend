@@ -9,10 +9,10 @@ import { TermsComponent } from './components/pages/terms/terms.component';
 import { ProjectComponent } from './components/project/project.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: 'projects', component: ProjectComponent },
-  { path: 'project/:id', component: ProjectDescriptionComponent },
+  { path: 'projects/:name', component: ProjectDescriptionComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'terms', component: TermsComponent },
