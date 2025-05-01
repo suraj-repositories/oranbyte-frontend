@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap, Subscription, catchError } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -31,6 +31,8 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
   private projectService = inject(ProjectService);
   private route = inject(ActivatedRoute);
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.loadProject();
     this.loadReadme();
@@ -51,6 +53,7 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
         if (this.projectName) {
           return this.projectService.getProjectByName(this.projectName).pipe(
             catchError(error => {
+              this.router.navigate(['/error']);
               return of({ data: null });
             })
           );
@@ -82,6 +85,7 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
         if (this.projectName) {
           return this.projectService.getProjectReadmeByProjectName(this.projectName).pipe(
             catchError(error => {
+              this.router.navigate(['/error']);
               return of({ data: null });
             })
           );

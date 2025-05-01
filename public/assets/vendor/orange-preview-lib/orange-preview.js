@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (imageContainers.length > 0) {
       const observer = new MutationObserver(function(mutationsList) {
+        console.log('Mutation observer triggered');
           for (const mutation of mutationsList) {
               if (mutation.type === 'childList') {
                   mutation.addedNodes.forEach(node => {
+
                       if (node.nodeType === 1 && node.tagName === 'IMG') {
                           imageViewer.setActionListenerToImage(node, node.closest('[data-image-preview="true"]'));
                       }

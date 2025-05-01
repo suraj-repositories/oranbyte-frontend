@@ -16,7 +16,7 @@ export class ProjectService {
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
@@ -24,7 +24,7 @@ export class ProjectService {
   getProjectById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/project/${id}`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
@@ -32,7 +32,7 @@ export class ProjectService {
   getProjectByName(name: String): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/project/${name}`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
@@ -40,7 +40,7 @@ export class ProjectService {
   getProjectReadmeByProjectName(name: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/project/${name}/readme`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
@@ -49,7 +49,7 @@ export class ProjectService {
     console.log(`${this.apiUrl}/projects?withImage=true`);
     return this.http.get<any[]>(`${this.apiUrl}/projects?withImage=true`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
@@ -57,7 +57,7 @@ export class ProjectService {
   getPopularProjects(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects/popular`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
@@ -65,7 +65,7 @@ export class ProjectService {
   getProjectLanguages(projectName: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/project/${projectName}/languages`).pipe(
       tap(response => {
-        console.log(response);
+        // console.log(response);
       })
     );
   }
