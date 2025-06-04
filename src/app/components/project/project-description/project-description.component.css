@@ -26,3 +26,9 @@ hr{
 }
 
 
+.source-code-btn.vs-code{
+  background-color: var(--light);
+  border: 1px dashed #909090;
+  color: var(--dark);
+  border-radius: 5px;
+}

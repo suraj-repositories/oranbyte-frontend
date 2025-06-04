@@ -34,12 +34,23 @@
           <a
           [href]="projectUrl || '#'"
           target="_blank"
-          class="btn btn-dark source-code-btn"
+          class="btn btn-dark source-code-btn my-2"
           [class.disabled]="!projectUrl"
           [style.pointer-events]="!projectUrl ? 'none' : 'auto'"
           [style.opacity]="!projectUrl ? '0.5' : '1'"
         >
           <iconify-icon icon="mdi:github" class="icon"></iconify-icon> &nbsp; Get source code
+        </a>
+
+          <a
+          [href]="projectGh1sUrl || '#'"
+          target="_blank"
+          class="btn source-code-btn vs-code my-2"
+          [class.disabled]="!projectGh1sUrl"
+          [style.pointer-events]="!projectGh1sUrl ? 'none' : 'auto'"
+          [style.opacity]="!projectGh1sUrl ? '0.5' : '1'"
+        >
+          <iconify-icon icon="vscode-icons:file-type-vscode" class="icon"></iconify-icon> &nbsp; View source code
         </a>
 
 

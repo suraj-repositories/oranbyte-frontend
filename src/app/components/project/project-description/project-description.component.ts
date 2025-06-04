@@ -26,6 +26,9 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
   projectName: string | null = null;
   projectDescription: string | null = null;
   projectUrl: string | null = null;
+  projectGh1sUrl: string | null = null;
+
+
   private routeSubscription: Subscription | undefined;
   private sanitizer = inject(DomSanitizer);
   private projectService = inject(ProjectService);
@@ -67,6 +70,7 @@ export class ProjectDescriptionComponent implements OnInit, OnDestroy {
           this.projectName = response.name;
           this.projectDescription = response.description;
           this.projectUrl = response.url;
+          this.projectGh1sUrl = response.gh1s_url;
         } else {
           this.handleProjectLoadError();
         }
