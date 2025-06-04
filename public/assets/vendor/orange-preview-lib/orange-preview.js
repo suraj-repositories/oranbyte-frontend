@@ -1,33 +1,55 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const imageContainers = document.querySelectorAll('[data-image-preview="true"]');
-  const imageViewer = new ImageViewer();
-  imageViewer.init();
+(function () {
+  function initImageViewer() {
+    const imageContainers = document.querySelectorAll('[data-image-preview="true"]');
+    if (imageContainers.length === 0) return;
 
-  if (imageContainers.length > 0) {
-      const observer = new MutationObserver(function(mutationsList) {
-        console.log('Mutation observer triggered');
-          for (const mutation of mutationsList) {
-              if (mutation.type === 'childList') {
-                  mutation.addedNodes.forEach(node => {
+    const imageViewer = new ImageViewer();
+    imageViewer.init();
 
-                      if (node.nodeType === 1 && node.tagName === 'IMG') {
-                          imageViewer.setActionListenerToImage(node, node.closest('[data-image-preview="true"]'));
-                      }
-                      if (node.nodeType === 1) {
-                          const imgs = node.querySelectorAll && node.querySelectorAll('img');
-                          imgs && imgs.forEach(img => {
-                              imageViewer.setActionListenerToImage(img, node.closest('[data-image-preview="true"]'));
-                          });
-                      }
-                  });
-              }
-          }
-      });
+    const observer = new MutationObserver(function (mutationsList) {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && node.tagName === 'IMG') {
+              imageViewer.setActionListenerToImage(node, node.closest('[data-image-preview="true"]'));
+            }
+            if (node.nodeType === 1) {
+              const imgs = node.querySelectorAll && node.querySelectorAll('img');
+              imgs && imgs.forEach(img => {
+                imageViewer.setActionListenerToImage(img, node.closest('[data-image-preview="true"]'));
+              });
+            }
+          });
+        }
+      }
+    });
 
-      const config = { childList: true, subtree: true };
-      imageContainers.forEach(container => observer.observe(container, config));
+    const config = { childList: true, subtree: true };
+    imageContainers.forEach(container => observer.observe(container, config));
   }
-});
+
+  function waitForAngularContent() {
+    let lastUrl = location.href;
+    const checkInterval = 500;
+
+    setInterval(() => {
+      const currentUrl = location.href;
+      if (currentUrl !== lastUrl) {
+        lastUrl = currentUrl;
+        setTimeout(initImageViewer, 200);
+      }
+    }, checkInterval);
+
+    setTimeout(initImageViewer, 200);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', waitForAngularContent);
+  } else {
+    waitForAngularContent();
+  }
+})();
+
 
 class ImageViewer {
   constructor() {
