@@ -18,4 +18,12 @@ export class AppComponent {
       }
     });
   }
+
+  ngAfterViewInit() {
+    const preloader = document.getElementById('global-preloader');
+    if (preloader) {
+      preloader.classList.add('fade-out');
+      setTimeout(() => preloader.remove(), 500);
+    }
+  }
 }

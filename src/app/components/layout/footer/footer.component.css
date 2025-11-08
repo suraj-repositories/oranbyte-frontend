@@ -6,8 +6,8 @@
 .detail .icon{
   width: 40px;
   height: 40px;
-  color: var(--accent-color);
-  background: var(--accent-background-color);
+  color: var(--primary);
+  background: var(--orange-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 .detail .icon:hover{
-  background: var(--accent-color);
+  background: var(--primary);
   color: white;
   transition: 0.3s;
 }

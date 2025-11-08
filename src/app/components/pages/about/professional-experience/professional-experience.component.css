@@ -13,7 +13,7 @@
   left: 25px;
   height: 100%;
   width: 4px;
-  background: var(--accent-light);
+  background: var(--primary-emphasis);
 }
 @media only screen and (min-width: 1170px) {
   #cd-timeline {
@@ -43,7 +43,7 @@
   top: -55px;
   width: 30px;
   border-radius: 50%;
-  color: var(--accent-light);
+  color: var(--primary-emphasis);
 }
 .cd-timeline-block:first-child {
   margin-top: 0;
@@ -70,10 +70,10 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  box-shadow: 0 0 0 5px var(--accent-light), inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 5px var(--primary-emphasis), inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 .cd-timeline-img {
-  background: var(--background-color);
+  background: var(--light);
 }
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
@@ -148,14 +148,14 @@
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: #5F687B;
+  color: var(--text-dark);
   margin-top:0;
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 20px;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-date {
-  color: #5F687B;
+  color: var(--text-dark);
   font-size: 13px;
   font-size: 0.8125rem;
   text-align: justify;

@@ -8,14 +8,14 @@
   border-radius: 50%;
   border: none;
   font-size: 16px;
-  color: var(--accent-color);
-  background: var(--accent-background-color);
+  color: var(--primary);
+  background: var(--orange-light);
   margin: 5px 5px;
   transition: 0.3s;
   font-size: 22px;
 }
 .social-links a:hover {
-  background: var(--accent-color);
+  background: var(--primary);
   color: white;
 }
 

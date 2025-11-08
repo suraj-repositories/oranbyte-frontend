@@ -1,5 +1,4 @@
 import {
-  ALLOW_MULTIPLE_PLATFORMS,
   ANIMATION_MODULE_TYPE,
   APP_BOOTSTRAP_LISTENER,
   APP_ID,
@@ -505,7 +504,7 @@ import {
   ɵɵvalidateIframeAttribute,
   ɵɵviewQuery,
   ɵɵviewQuerySignal
-} from "./chunk-5QXQOMPN.js";
+} from "./chunk-KQGXHOHP.js";
 import "./chunk-P6U2JBMQ.js";
 import "./chunk-WDMUDEB6.js";
 export {
@@ -659,7 +658,6 @@ export {
   untracked,
   viewChild,
   viewChildren,
-  ALLOW_MULTIPLE_PLATFORMS as ɵALLOW_MULTIPLE_PLATFORMS,
   AfterRenderManager as ɵAfterRenderManager,
   CLIENT_RENDER_MODE_FLAG as ɵCLIENT_RENDER_MODE_FLAG,
   CONTAINER_HEADER_OFFSET as ɵCONTAINER_HEADER_OFFSET,

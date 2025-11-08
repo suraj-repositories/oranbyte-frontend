@@ -11,14 +11,14 @@
   overflow: visible;
   border-radius: 10px;
   height: 15px;
-  background-color: var(--accent-color) !important;
+  background-color: var(--primary) !important;
 }
 
 .progress-bar::after {
   content: "";
   height: 25px;
   width: 25px;
-  background-color: var(--accent-color);
+  background-color: var(--primary);
   right: -14px;
   position: absolute;
   border-radius: 50%;
@@ -39,7 +39,7 @@
   position: absolute;
   right: -21px;
   bottom: 20px;
-  color: var(--heading-color);
+  color: var(--text-dark);
   font-size: 14px;
   font-weight: bold;
 }
@@ -49,5 +49,5 @@ h5{
   margin-bottom: 3px;
   font-weight: 600;
   margin-left: 5px;
-  color: var(--heading-color);
+  color: var(--text-dark);
 }

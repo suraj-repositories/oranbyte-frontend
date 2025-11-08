@@ -2146,20 +2146,6 @@ function stringifyForError(value) {
   }
   return renderStringify(value);
 }
-function debugStringifyTypeForError(type) {
-  let componentDef = type[NG_COMP_DEF] || null;
-  if (componentDef !== null && componentDef.debugInfo) {
-    return stringifyTypeFromDebugInfo(componentDef.debugInfo);
-  }
-  return stringifyForError(type);
-}
-function stringifyTypeFromDebugInfo(debugInfo) {
-  if (!debugInfo.filePath || !debugInfo.lineNumber) {
-    return debugInfo.className;
-  } else {
-    return `${debugInfo.className} (at ${debugInfo.filePath}:${debugInfo.lineNumber})`;
-  }
-}
 function throwCyclicDependencyError(token, path) {
   throw new RuntimeError(-200, ngDevMode ? `Circular dependency in DI detected for ${token}${path ? `. Dependency path: ${path.join(" > ")} > ${token}` : ""}` : token);
 }
@@ -12714,7 +12700,7 @@ function toOutputRefArray(map2) {
   }));
 }
 function verifyNotAnOrphanComponent(componentDef) {
-  if ((typeof ngJitMode === "undefined" || ngJitMode) && componentDef.debugInfo?.forbidOrphanRendering) {
+  if (false) {
     if (depsTracker.isOrphanComponent(componentDef.type)) {
       throw new RuntimeError(981, `Orphan component found! Trying to render the component ${debugStringifyTypeForError(componentDef.type)} without first loading the NgModule that declares it. It is recommended to make this component standalone in order to avoid this error. If this is not possible now, import the component's NgModule in the appropriate NgModule, or the standalone component in which you are trying to render this component. If this is a lazy import, load the NgModule lazily as well and use its module injector.`);
     }
@@ -12785,7 +12771,7 @@ var ComponentFactory2 = class extends ComponentFactory$1 {
     try {
       const cmpDef = this.componentDef;
       ngDevMode && verifyNotAnOrphanComponent(cmpDef);
-      const tAttributes = rootSelectorOrNode ? ["ng-version", "19.2.14"] : (
+      const tAttributes = rootSelectorOrNode ? ["ng-version", "19.2.15"] : (
         // Extract attributes and classes from the first selector only to match VE behavior.
         extractAttrsAndClassesFromSelector(this.componentDef.selectors[0])
       );
@@ -22367,7 +22353,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = new Version("19.2.14");
+var VERSION = new Version("19.2.15");
 var ModuleWithComponentFactories = class {
   ngModuleFactory;
   componentFactories;
@@ -22448,7 +22434,7 @@ var CompilerFactory = class {
 function compileNgModuleFactory(injector, options, moduleType) {
   ngDevMode && assertNgModuleType(moduleType);
   const moduleFactory = new NgModuleFactory2(moduleType);
-  if (typeof ngJitMode !== "undefined" && !ngJitMode) {
+  if (true) {
     return Promise.resolve(moduleFactory);
   }
   const compilerOptions = injector.get(COMPILER_OPTIONS, []).concat(options);
@@ -23262,14 +23248,13 @@ var PlatformRef = class _PlatformRef {
   }], null);
 })();
 var _platformInjector = null;
-var ALLOW_MULTIPLE_PLATFORMS = new InjectionToken(ngDevMode ? "AllowMultipleToken" : "");
 function createPlatform(injector) {
-  if (_platformInjector && !_platformInjector.get(ALLOW_MULTIPLE_PLATFORMS, false)) {
+  if (getPlatform()) {
     throw new RuntimeError(400, ngDevMode && "There can be only one platform. Destroy the previous one to create a new one.");
   }
   publishDefaultGlobalUtils();
   publishSignalConfiguration();
-  _platformInjector = injector;
+  _platformInjector = true ? injector : null;
   const platform = injector.get(PlatformRef);
   runPlatformInitializers(injector);
   return platform;
@@ -23279,18 +23264,14 @@ function createPlatformFactory(parentPlatformFactory, name, providers = []) {
   const marker = new InjectionToken(desc);
   return (extraProviders = []) => {
     let platform = getPlatform();
-    if (!platform || platform.injector.get(ALLOW_MULTIPLE_PLATFORMS, false)) {
+    if (!platform) {
       const platformProviders = [...providers, ...extraProviders, {
         provide: marker,
         useValue: true
       }];
-      if (parentPlatformFactory) {
-        parentPlatformFactory(platformProviders);
-      } else {
-        createPlatform(createPlatformInjector(platformProviders, desc));
-      }
+      platform = parentPlatformFactory?.(platformProviders) ?? createPlatform(createPlatformInjector(platformProviders, desc));
     }
-    return assertPlatform(marker);
+    return false ? platform : assertPlatform(marker);
   };
 }
 function createPlatformInjector(providers = [], name) {
@@ -23316,6 +23297,9 @@ function assertPlatform(requiredToken) {
   return platform;
 }
 function getPlatform() {
+  if (false) {
+    return null;
+  }
   return _platformInjector?.get(PlatformRef) ?? null;
 }
 function destroyPlatform() {
@@ -23325,7 +23309,9 @@ function createOrReusePlatformInjector(providers = []) {
   if (_platformInjector) return _platformInjector;
   publishDefaultGlobalUtils();
   const injector = createPlatformInjector(providers);
-  _platformInjector = injector;
+  if (true) {
+    _platformInjector = injector;
+  }
   publishSignalConfiguration();
   runPlatformInitializers(injector);
   return injector;
@@ -24850,20 +24836,24 @@ var ApplicationModule = class _ApplicationModule {
   }], null);
 })();
 function internalCreateApplication(config) {
+  const {
+    rootComponent,
+    appProviders,
+    platformProviders,
+    platformRef
+  } = config;
   profiler(
     8
     /* ProfilerEvent.BootstrapApplicationStart */
   );
+  if (false) {
+    throw new RuntimeError(401, ngDevMode && "Missing Platform: This may be due to using `bootstrapApplication` on the server without passing a `BootstrapContext`. Please make sure that `bootstrapApplication` is called with a `context` argument.");
+  }
   try {
-    const {
-      rootComponent,
-      appProviders,
-      platformProviders
-    } = config;
+    const platformInjector = platformRef?.injector ?? createOrReusePlatformInjector(platformProviders);
     if ((typeof ngDevMode === "undefined" || ngDevMode) && rootComponent !== void 0) {
       assertStandaloneComponentType(rootComponent);
     }
-    const platformInjector = createOrReusePlatformInjector(platformProviders);
     const allAppProviders = [internalProvideZoneChangeDetection({}), {
       provide: ChangeDetectionScheduler,
       useExisting: ChangeDetectionSchedulerImpl
@@ -26922,7 +26912,6 @@ export {
   MissingTranslationStrategy,
   ENABLE_ROOT_COMPONENT_BOOTSTRAP,
   PlatformRef,
-  ALLOW_MULTIPLE_PLATFORMS,
   createPlatform,
   createPlatformFactory,
   assertPlatform,
@@ -26998,26 +26987,14 @@ export {
 @angular/core/fesm2022/primitives/di.mjs:
 @angular/core/fesm2022/primitives/signals.mjs:
 @angular/core/fesm2022/primitives/event-dispatch.mjs:
+@angular/core/fesm2022/core.mjs:
   (**
-   * @license Angular v19.2.14
+   * @license Angular v19.2.15
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/core/fesm2022/core.mjs:
-  (**
-   * @license Angular v19.2.14
-   * (c) 2010-2025 Google LLC. https://angular.io/
-   * License: MIT
-   *)
-  (*!
-   * @license
-   * Copyright Google LLC All Rights Reserved.
-   *
-   * Use of this source code is governed by an MIT-style license that can be
-   * found in the LICENSE file at https://angular.dev/license
-   *)
-
 @angular/core/fesm2022/core.mjs:
   (*!
    * @license
@@ -27027,4 +27004,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-5QXQOMPN.js.map
+//# sourceMappingURL=chunk-KQGXHOHP.js.map
