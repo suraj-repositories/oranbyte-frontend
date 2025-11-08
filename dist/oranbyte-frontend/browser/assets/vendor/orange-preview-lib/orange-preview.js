@@ -50,176 +50,287 @@
   }
 })();
 
-
 class ImageViewer {
   constructor() {
-      this.IMAGE_CONTAINER_SELECTOR = '[data-image-preview="true"]';
-      this.IMAGE_MODAL_SELECTOR = '.preview-modal';
-      this.currentImageIndex = 0;
-      this.currentImageList = [];
-      this.currentContainer = null;
-      this.isModalOpen = false;
-      this.leftBtn = null;
-      this.rightBtn = null;
-      this.closeBtn = null;
+    this.IMAGE_CONTAINER_SELECTOR = '[data-image-preview="true"]';
+    this.IMAGE_MODAL_SELECTOR = '.preview-modal';
+    this.currentImageIndex = 0;
+    this.currentImageList = [];
+    this.currentContainer = null;
+    this.isModalOpen = false;
+    this.leftBtn = null;
+    this.rightBtn = null;
+    this.closeBtn = null;
+    this.downloadBtn = null;
   }
 
   init() {
-      this.enablePreview();
-      this.setActionListerToAllImages();
+    this.enablePreview();
+    this.setActionListerToAllImages();
+    this.enableLeftRightKeys();
+    this.enableEscapeKey();
   }
 
   enablePreview() {
-      const modal = document.querySelector('.oranbyte-img-preview');
-      if (!modal) this.createPreviewModal();
+    const modal = document.querySelector('.oranbyte-img-preview');
+    if (!modal) this.createPreviewModal();
 
-      const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
-      this.leftBtn = previewModal.querySelector('.left-btn');
-      this.rightBtn = previewModal.querySelector('.right-btn');
-      this.closeBtn = previewModal.querySelector('.close-btn');
+    const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
+    this.leftBtn = previewModal.querySelector('.left-btn');
+    this.rightBtn = previewModal.querySelector('.right-btn');
+    this.closeBtn = previewModal.querySelector('.close-btn');
+    this.downloadBtn = previewModal.querySelector('.download-btn');
 
-      this.addModalEventListeners();
+    this.addModalEventListeners();
   }
 
   addModalEventListeners() {
-      this.closeBtn.addEventListener('click', () => {
-          const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
-          this.hide(previewModal);
-          this.isModalOpen = false;
-      });
+    this.closeBtn.addEventListener('click', () => {
+      const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
+      this.hide(previewModal);
+      this.toggleDownloadButton(null, this.currentContainer);
+      this.isModalOpen = false;
+    });
 
-      this.leftBtn.addEventListener('click', () => {
-          if (this.currentImageIndex > 0) {
-              this.currentImageIndex--;
-              const image = this.currentImageList[this.currentImageIndex];
-              this.updateModalContent(image);
-              this.updateNavigationButtons();
-          }
-      });
+    this.leftBtn.addEventListener('click', () => {
+      if (this.currentImageIndex > 0) {
+        this.currentImageIndex--;
+        const image = this.currentImageList[this.currentImageIndex];
+        this.toggleDownloadButton(image, this.currentContainer);
+        this.updateModalContent(image);
+        this.updateNavigationButtons();
+      }
+    });
 
-      this.rightBtn.addEventListener('click', () => {
-          if (this.currentImageIndex < this.currentImageList.length - 1) {
-              this.currentImageIndex++;
-              const image = this.currentImageList[this.currentImageIndex];
-              this.updateModalContent(image);
-              this.updateNavigationButtons();
-          }
-      });
+    this.rightBtn.addEventListener('click', () => {
+      if (this.currentImageIndex < this.currentImageList.length - 1) {
+        this.currentImageIndex++;
+        const image = this.currentImageList[this.currentImageIndex];
+        this.toggleDownloadButton(image, this.currentContainer);
+        this.updateModalContent(image);
+        this.updateNavigationButtons();
+      }
+    });
+
+    this.enableDownloadButton();
+
   }
 
   setActionListerToAllImages() {
-      document.querySelectorAll(this.IMAGE_CONTAINER_SELECTOR).forEach(container => {
-          const imageList = Array.from(container.querySelectorAll('img'));
-          imageList.forEach(image => this.setActionListenerToImage(image, container));
-      });
+    document.querySelectorAll(this.IMAGE_CONTAINER_SELECTOR).forEach(container => {
+      const imageList = Array.from(container.querySelectorAll('img'));
+      imageList.forEach(image => this.setActionListenerToImage(image, container));
+    });
   }
 
   setActionListenerToImage(image, container) {
-      if (image.hasAttribute('data-listener-added')) return;
+    if (image.hasAttribute('data-listener-added')) return;
 
-      const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
-      if (!previewModal) return;
 
-      const previewImage = previewModal.querySelector("img");
-      const imageTitle = previewModal.querySelector(".image-title");
-      if (!previewImage || !imageTitle) return;
+    const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
+    if (!previewModal) return;
 
-      image.addEventListener('click', () => {
-          if (!container) return;
+    const previewImage = previewModal.querySelector("img");
+    const imageTitle = previewModal.querySelector(".image-title");
+    if (!previewImage || !imageTitle) return;
 
-          this.currentContainer = container;
-          this.currentImageList = Array.from(this.currentContainer.querySelectorAll('img'));
-          if (this.currentImageList.length === 0) return;
 
-          this.currentImageIndex = this.currentImageList.indexOf(image);
-          if (this.currentImageIndex === -1) return;
 
-          this.updateModalContent(image);
-          this.updateNavigationButtons();
-          this.show(previewModal);
-          this.isModalOpen = true;
-      });
+    const openPreview = () => {
+      if (!container) return;
 
-      image.setAttribute('data-listener-added', 'true');
+      this.toggleDownloadButton(image, container);
+
+      this.currentContainer = container;
+      this.currentImageList = Array.from(this.currentContainer.querySelectorAll('img'));
+      if (this.currentImageList.length === 0) return;
+
+      this.currentImageIndex = this.currentImageList.indexOf(image);
+      if (this.currentImageIndex === -1) return;
+
+      this.updateModalContent(image);
+      this.updateNavigationButtons();
+      this.show(previewModal);
+      this.isModalOpen = true;
+    }
+
+    image.addEventListener('click', openPreview);
+    this.enableClickSource(image, openPreview);
+    this.enableClickSources(image, openPreview);
+
+
+    image.setAttribute('data-listener-added', 'true');
   }
 
   updateModalContent(image) {
-      const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
-      const previewImage = previewModal.querySelector("img");
-      const imageTitle = previewModal.querySelector(".image-title");
+    const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
+    const previewImage = previewModal.querySelector("img");
+    const imageTitle = previewModal.querySelector(".image-title");
 
-      previewImage.src = image.src;
-      const title = image.getAttribute('data-title');
-      if (title) {
-          imageTitle.textContent = title;
-          imageTitle.classList.remove('hide');
-      } else {
-          imageTitle.classList.add('hide');
-      }
+    previewImage.src = image.src;
+    const title = image.getAttribute('data-title');
+    if (title) {
+      imageTitle.textContent = title;
+      imageTitle.classList.remove('hide');
+    } else {
+      imageTitle.classList.add('hide');
+    }
   }
 
   updateNavigationButtons() {
-      this.leftBtn.classList.toggle('disabled', this.currentImageIndex === 0);
-      this.rightBtn.classList.toggle('disabled', this.currentImageIndex === this.currentImageList.length - 1);
+    this.leftBtn.classList.toggle('disabled', this.currentImageIndex === 0);
+    this.rightBtn.classList.toggle('disabled', this.currentImageIndex === this.currentImageList.length - 1);
   }
 
   hide(container) {
-      container.classList.add('zoom-out');
-      container.classList.remove('zoom-in');
-      container.addEventListener('animationend', () => {
-          container.classList.add('hide');
-      }, { once: true });
+    container.classList.add('zoom-out');
+    container.classList.remove('zoom-in');
+    container.addEventListener('animationend', () => {
+      container.classList.add('hide');
+    }, { once: true });
   }
 
   show(container) {
-      container.classList.remove('hide', 'zoom-out');
-      container.classList.add('zoom-in');
+    container.classList.remove('hide', 'zoom-out');
+    container.classList.add('zoom-in');
   }
 
   createPreviewModal() {
-      const previewModal = document.createElement('div');
-      previewModal.className = 'oranbyte-img-preview preview-modal full-screen-container hide blackish';
+    const previewModal = document.createElement('div');
+    previewModal.className = 'oranbyte-img-preview preview-modal full-screen-container hide blackish';
 
-      const imageWithTitle = document.createElement('div');
-      imageWithTitle.className = 'image-with-title';
+    const imageWithTitle = document.createElement('div');
+    imageWithTitle.className = 'image-with-title';
 
-      const imageBox = document.createElement('div');
-      imageBox.className = 'image-box';
+    const imageBox = document.createElement('div');
+    imageBox.className = 'image-box';
 
-      const img = document.createElement('img');
-      img.src = '';
-      img.alt = 'Preview-image';
-      imageBox.appendChild(img);
+    const img = document.createElement('img');
+    img.src = '';
+    img.alt = 'Preview-image';
+    imageBox.appendChild(img);
 
-      const imageTitle = document.createElement('div');
-      imageTitle.className = 'image-title';
+    const imageTitle = document.createElement('div');
+    imageTitle.className = 'image-title';
 
-      imageWithTitle.appendChild(imageBox);
-      imageWithTitle.appendChild(imageTitle);
+    imageWithTitle.appendChild(imageBox);
+    imageWithTitle.appendChild(imageTitle);
 
-      const actionButtons = document.createElement('div');
-      actionButtons.className = 'action-buttons';
+    const actionButtons = document.createElement('div');
+    actionButtons.className = 'action-buttons';
 
-      const leftBtn = document.createElement('div');
-      leftBtn.className = 'lib-btn left-btn';
-      leftBtn.innerHTML = '&leftarrow;';
+    const leftBtn = document.createElement('div');
+    leftBtn.className = 'lib-btn left-btn';
+    leftBtn.innerHTML = '&leftarrow;';
 
-      const rightBtn = document.createElement('div');
-      rightBtn.className = 'lib-btn right-btn';
-      rightBtn.innerHTML = '&rightarrow;';
+    const rightBtn = document.createElement('div');
+    rightBtn.className = 'lib-btn right-btn';
+    rightBtn.innerHTML = '&rightarrow;';
 
-      const closeBtn = document.createElement('div');
-      closeBtn.className = 'lib-btn close-btn';
-      closeBtn.id = 'close-btn';
-      closeBtn.innerHTML = '&times;';
+    const closeBtn = document.createElement('div');
+    closeBtn.className = 'lib-btn close-btn';
+    closeBtn.id = 'close-btn';
+    closeBtn.innerHTML = '&times;';
 
-      actionButtons.appendChild(leftBtn);
-      actionButtons.appendChild(rightBtn);
-      actionButtons.appendChild(closeBtn);
+    const downloadBtn = document.createElement('div');
+    downloadBtn.className = 'lib-btn download-btn';
+    downloadBtn.id = 'download-btn';
+    downloadBtn.innerHTML = '&darr;';
 
-      previewModal.appendChild(imageWithTitle);
-      previewModal.appendChild(actionButtons);
+    actionButtons.appendChild(leftBtn);
+    actionButtons.appendChild(rightBtn);
+    actionButtons.appendChild(closeBtn);
+    actionButtons.appendChild(downloadBtn);
 
-      document.body.appendChild(previewModal);
+    previewModal.appendChild(imageWithTitle);
+    previewModal.appendChild(actionButtons);
+
+    document.body.appendChild(previewModal);
   }
+
+  enableLeftRightKeys() {
+    document.addEventListener('keydown', (event) => {
+      if (!this.isModalOpen) return;
+
+      if (event.key === 'ArrowLeft') {
+        this.leftBtn.click();
+      } else if (event.key === 'ArrowRight') {
+        this.rightBtn.click();
+      }
+    });
+  }
+
+  enableEscapeKey() {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && this.isModalOpen) {
+        this.closeBtn.click();
+      }
+    });
+  }
+
+  enableClickSource(image, openPreview) {
+    if (!image) return;
+    const anotherClickSource = image.getAttribute('data-click-source');
+    if (anotherClickSource) {
+      const source = document.querySelector(anotherClickSource);
+      if (source) {
+        source.addEventListener('click', openPreview);
+      }
+    }
+  }
+
+  enableClickSources(image, openPreview) {
+    if (!image) return;
+    const anotherClickSource = image.getAttribute('data-click-sources');
+    if (anotherClickSource) {
+      const sources = document.querySelectorAll(anotherClickSource);
+      sources.forEach(source => {
+        source.addEventListener('click', openPreview);
+      });
+    }
+  }
+
+  toggleDownloadButton(image, container) {
+    if (!image || !container) return;
+    const previewModal = document.querySelector(this.IMAGE_MODAL_SELECTOR);
+
+    if (image.getAttribute('data-image-downloadable') === 'true'
+      || container.getAttribute('data-image-downloadable') === 'true') {
+      previewModal.classList.add('downloadable');
+    } else {
+      previewModal.classList.remove('downloadable');
+    }
+  }
+
+  enableDownloadButton() {
+    this.downloadBtn.addEventListener('click', () => {
+      if (this.currentImageList.length <= 0) {
+        return;
+      }
+      const image = this.currentImageList[this.currentImageIndex];
+      const imageUrl = image.src;
+      const fileName = image.getAttribute('data-title') || 'downloaded-image';
+
+      this.downloadImage(imageUrl, fileName);
+    });
+  }
+
+  downloadImage(imageUrl, fileName) {
+    fetch(imageUrl, { mode: 'cors' })
+      .then(response => response.blob())
+      .then(blob => {
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch(error => {
+        console.error('Download failed:', error);
+      });
+
+  }
+
 }

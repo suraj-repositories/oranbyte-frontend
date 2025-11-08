@@ -987,10 +987,6 @@ section,
   color: color-mix(in srgb, var(--primary), transparent 15%);
 }
 
-.hero .animated {
-  animation: up-down 2s ease-in-out infinite alternate-reverse both;
-}
-
 @media (max-width: 640px) {
   .hero h1 {
     font-size: 28px;
@@ -2473,3 +2469,38 @@ border: color-mix(in srgb, var(--dark), transparent 96%);
   animation: color 3s linear infinite;
 }
 
+.cube-1,
+.cube-2,
+.cube-3,
+.cube-4{
+  position: relative;
+  width: 100%;
+  color: rgba(255, 166, 0, 0.58);
+}
+.cube-1 svg,
+.cube-2 svg,
+.cube-3 svg,
+.cube-4 svg{
+  position: absolute;
+  max-width: 40px;
+}
+
+.cube-1 svg{
+      right: 5px;
+}
+.cube-2 svg{
+  right: 2px;
+    top: -45px;
+}
+.cube-3 {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.cube-3 svg{
+  top: 10px;
+  position: relative;
+}
+.cube-3 svg:nth-child(2){
+  color: var(--primary);
+}
