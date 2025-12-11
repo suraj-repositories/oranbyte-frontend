@@ -1,7 +1,7 @@
 import {
   getDOM
-} from "./chunk-NPKGD4BF.js";
-import "./chunk-2JECQS5B.js";
+} from "./chunk-AO2RT7ZV.js";
+import "./chunk-ZM3ZQJ5C.js";
 import {
   ChangeDetectorRef,
   Directive,
@@ -42,7 +42,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵlistener
-} from "./chunk-KQGXHOHP.js";
+} from "./chunk-MIKUYL4T.js";
 import {
   Subject,
   forkJoin,
@@ -6705,7 +6705,7 @@ var UntypedFormBuilder = class _UntypedFormBuilder extends FormBuilder {
     }]
   }], null, null);
 })();
-var VERSION = new Version("19.2.15");
+var VERSION = new Version("19.2.17");
 var FormsModule = class _FormsModule {
   /**
    * @description
@@ -6858,7 +6858,7 @@ export {
 
 @angular/forms/fesm2022/forms.mjs:
   (**
-   * @license Angular v19.2.15
+   * @license Angular v19.2.17
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)

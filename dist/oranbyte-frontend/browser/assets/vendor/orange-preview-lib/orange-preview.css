@@ -1,4 +1,4 @@
-[data-image-preview="true"] {
+[data-image-preview="true"] img{
     user-select: none;
     cursor: pointer;
 }
